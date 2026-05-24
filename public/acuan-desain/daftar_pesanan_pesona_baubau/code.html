@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Portal Mitra - Pesanan Masuk</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1a5276",
+                    "secondary-container": "#fedb9b",
+                    "surface-container": "#f4ede3",
+                    "secondary-fixed-dim": "#e4c285",
+                    "surface-bright": "#fff8f1",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffdea4",
+                    "tertiary-fixed-dim": "#c8c6c3",
+                    "tertiary": "#373736",
+                    "on-surface": "#1e1b16",
+                    "surface-container-high": "#eee7de",
+                    "surface-variant": "#e8e1d8",
+                    "outline": "#72787f",
+                    "on-error": "#ffffff",
+                    "secondary": "#745a27",
+                    "on-primary-fixed": "#001e30",
+                    "on-surface-variant": "#41474e",
+                    "on-secondary-container": "#795f2b",
+                    "tertiary-container": "#4e4e4c",
+                    "primary-fixed": "#cbe6ff",
+                    "on-secondary-fixed": "#261900",
+                    "tertiary-fixed": "#e4e2df",
+                    "surface-tint": "#2f6388",
+                    "on-primary-fixed-variant": "#0e4b6e",
+                    "error": "#ba1a1a",
+                    "on-background": "#1e1b16",
+                    "background": "#fff8f1",
+                    "on-tertiary-fixed": "#1b1c1a",
+                    "inverse-primary": "#9bccf6",
+                    "primary-fixed-dim": "#9bccf6",
+                    "surface": "#fff8f1",
+                    "surface-container-highest": "#e8e1d8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#faf3e9",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-dim": "#e0d9d0",
+                    "on-secondary-fixed-variant": "#5a4312",
+                    "primary": "#003b5a",
+                    "outline-variant": "#c1c7cf",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#94c5ee",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#474745",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#33302a",
+                    "on-tertiary-container": "#c1bfbd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "32px",
+                    "3xl": "64px",
+                    "2xl": "48px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { background-color: #F5F3F0; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface bg-surface-container-low min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-md py-sm w-full sticky top-0 z-50 bg-surface dark:bg-surface-dim shadow-sm">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-headline-sm text-headline-sm-mobile font-bold text-primary">Pesanan Masuk</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="max-w-[1280px] mx-auto px-md md:px-lg mt-md">
+<!-- Tab Navigation (Bento Style Filter) -->
+<nav class="flex gap-sm overflow-x-auto pb-md no-scrollbar">
+<button class="flex-none px-lg py-sm rounded-full bg-primary text-on-primary font-label-md text-label-md flex items-center gap-xs shadow-md">
+                Baru <span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full text-[10px]">3</span>
+</button>
+<button class="flex-none px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors">
+                Diproses
+            </button>
+<button class="flex-none px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors">
+                Dikirim
+            </button>
+<button class="flex-none px-lg py-sm rounded-full bg-surface-container-highest text-on-surface-variant font-label-md text-label-md hover:bg-surface-variant transition-colors">
+                Selesai
+            </button>
+</nav>
+<!-- Dynamic Order List -->
+<div class="space-y-md">
+<!-- Order Card 1 (Urgent/Baru) -->
+<div class="glass-card rounded-xl p-md shadow-sm border-l-4 border-secondary animate-in fade-in slide-in-from-bottom-4 duration-500">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Order ID: #BAU-88291</p>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-xs">Andi Pratama</h3>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-md py-xs rounded-full text-label-sm font-label-sm flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                        Perlu Diproses
+                    </span>
+</div>
+<div class="flex gap-md py-md border-y border-surface-variant/30">
+<img alt="Tenun Buton" class="w-20 h-20 object-cover rounded-lg" data-alt="A high-quality close-up photograph of a traditional hand-woven Buton textile featuring intricate geometric patterns in deep blue and gold threads. The lighting is soft and cinematic, highlighting the rich texture of the fabric. The overall mood is sophisticated and culturally significant, reflecting the premium heritage of Baubau craftsmanship in a clean, modern studio setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm3wygYXDODazXY92MQFErSDnGwq4wi2qNX_txrOR-dwAHBpvBS6zGuQyzXXBjds3JTIS6rWtHXgr4jH3w1dJF8P6Uwc6o9ZHPY4lWE67-_e4krJypL7uaIn8m6Q1ErdSYPiC74NzMHUqsDfVMGFYz1IJHWY4oOaBT0gRNQ9teR8HAHbqiwkcpqSxXiGtayaH9QjDBAMTueQlpMYfn9yk34TTW64H4NcNbFW2UmcFpeRAs41XXvyv6mGS-EZFLcuG4gZRwrjtKTVI"/>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-semibold">Kain Tenun Buton Kasopa (Biru)</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qty: 2 • Varian: Premium Grade A</p>
+<div class="mt-sm flex justify-between items-end">
+<span class="font-headline-sm text-headline-sm text-secondary">Rp 1.450.000</span>
+</div>
+</div>
+</div>
+<div class="flex gap-sm mt-md">
+<button class="flex-1 bg-primary text-on-primary py-sm rounded-lg font-label-md text-label-md flex justify-center items-center gap-xs hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="check_circle">check_circle</span>
+                        Terima Pesanan
+                    </button>
+<button class="flex-none px-md py-sm border border-[#25D366] text-[#25D366] rounded-lg font-label-md text-label-md flex items-center gap-xs hover:bg-[#25D366]/5 transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="chat">chat</span>
+                        Hubungi
+                    </button>
+</div>
+</div>
+<!-- Order Card 2 -->
+<div class="glass-card rounded-xl p-md shadow-sm opacity-90 border-l-4 border-primary/20">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Order ID: #BAU-88285</p>
+<h3 class="font-headline-sm text-headline-sm text-primary mt-xs">Siti Rahayu</h3>
+</div>
+<span class="bg-surface-variant text-on-surface-variant px-md py-xs rounded-full text-label-sm font-label-sm flex items-center gap-xs">
+                         Baru
+                    </span>
+</div>
+<div class="flex gap-md py-md border-y border-surface-variant/30">
+<img alt="Souvenir" class="w-20 h-20 object-cover rounded-lg" data-alt="A collection of handmade miniature Buton traditional houses crafted from polished dark wood and silver accents. The items are arranged artfully on a clean white surface with soft natural light creating gentle shadows. The aesthetic is minimalist and high-end, evoking a sense of luxury travel souvenirs and professional artisanal quality within a contemporary Indonesian context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOLcyarih8WuIw_1XFlUh_unAvJsnljsiHZdaz-38if9FtrGSoLGDwh59OWSYpMI-pSEKvooMW0wyXG_yYn7842B1yTIAqi2mLe1mcddY3n4YgDmvivuTzrIpDOpnI9ItYp7SkWxfFpo9Jil7Aa9UPTRDTGHUfkDOsOyxj5-0hDVTpcDCmoouLMWZOgzEDneRwtVTN-K819HhThZ7Ss7fxXc3upKtWnSX6SklMCREHBkixpecDwFqJiGHGM4PLkPZjKolAGU_aTCY"/>
+<div class="flex-1">
+<p class="font-body-md text-body-md font-semibold">Miniatur Rumah Adat Banua Tada</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Qty: 5 • Varian: Medium Size</p>
+<div class="mt-sm flex justify-between items-end">
+<span class="font-headline-sm text-headline-sm text-secondary">Rp 750.000</span>
+</div>
+</div>
+</div>
+<div class="flex gap-sm mt-md">
+<button class="flex-1 bg-primary text-on-primary py-sm rounded-lg font-label-md text-label-md hover:bg-primary-container transition-all active:scale-95 shadow-sm">
+                        Terima Pesanan
+                    </button>
+<button class="flex-none px-md py-sm border border-[#25D366] text-[#25D366] rounded-lg font-label-md text-label-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="chat">chat</span>
+</button>
+</div>
+</div>
+<!-- Order Card 3 (Empty State Suggestion - Floating Action) -->
+<div class="py-xl text-center">
+<p class="font-body-sm text-body-sm text-outline">Menampilkan semua pesanan baru (3)</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface dark:bg-surface-container-low border-t border-surface-variant rounded-t-xl shadow-lg">
+<!-- Dashboard -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:text-primary transition-transform duration-150 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<!-- Kelola -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:text-primary transition-transform duration-150 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-label-sm text-label-sm">Kelola</span>
+</a>
+<!-- Pesanan (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-xl px-4 py-1 transition-transform duration-150 scale-95 active:scale-90 shadow-sm" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-label-sm text-label-sm">Pesanan</span>
+</a>
+<!-- Profil -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:text-primary transition-transform duration-150 scale-95 active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction for Tabs
+        const tabs = document.querySelectorAll('nav button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary', 'text-on-primary', 'shadow-md');
+                    t.classList.add('bg-surface-container-highest', 'text-on-surface-variant');
+                });
+                tab.classList.remove('bg-surface-container-highest', 'text-on-surface-variant');
+                tab.classList.add('bg-primary', 'text-on-primary', 'shadow-md');
+            });
+        });
+
+        // Hover animation for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.classList.add('shadow-md');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.classList.remove('shadow-md');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Virtual Tour — Benteng Keraton Buton</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c8c6c3",
+                    "on-secondary-fixed-variant": "#5a4312",
+                    "surface-variant": "#e8e1d8",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-container": "#94c5ee",
+                    "background": "#fff8f1",
+                    "on-tertiary-fixed": "#1b1c1a",
+                    "surface-container-high": "#eee7de",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#795f2b",
+                    "on-surface-variant": "#41474e",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#33302a",
+                    "primary": "#003b5a",
+                    "secondary": "#745a27",
+                    "tertiary": "#373736",
+                    "outline-variant": "#c1c7cf",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001e30",
+                    "primary-container": "#1a5276",
+                    "inverse-primary": "#9bccf6",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#0e4b6e",
+                    "tertiary-container": "#4e4e4c",
+                    "tertiary-fixed": "#e4e2df",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-container": "#c1bfbd",
+                    "surface": "#fff8f1",
+                    "on-background": "#1e1b16",
+                    "surface-container-highest": "#e8e1d8",
+                    "on-surface": "#1e1b16",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f1",
+                    "primary-fixed-dim": "#9bccf6",
+                    "secondary-fixed": "#ffdea4",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#e4c285",
+                    "on-secondary-fixed": "#261900",
+                    "outline": "#72787f",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#2f6388",
+                    "secondary-container": "#fedb9b",
+                    "primary-fixed": "#cbe6ff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #1A1A1A; color: #FFFFFF; overflow: hidden; }
+        .viewer-container { height: calc(100vh - 64px); position: relative; }
+        .spot-active { background-color: #1A5276; color: white; border-color: #1A5276; }
+        .spot-inactive { background-color: rgba(255, 255, 255, 0.1); color: #c8c6c3; border-color: rgba(255, 255, 255, 0.2); }
+        .glass-ui { background: rgba(26, 26, 26, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .rotate-slow { animation: rotate-slow 20s linear infinite; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md">
+<!-- Top Navigation Anchor (Manual Overwrite for Dark Theme Context) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-md py-sm glass-ui shadow-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-fixed-dim" data-icon="anchor">anchor</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary-fixed-dim">Virtual Tour — Benteng Keraton Buton</h1>
+</div>
+<div class="flex items-center gap-md">
+<!-- Audio Guide Dropdown -->
+<div class="relative group">
+<button class="flex items-center gap-xs px-md py-2 rounded-lg bg-surface-container-highest/10 hover:bg-surface-container-highest/20 transition-all border border-white/10">
+<span class="material-symbols-outlined text-sm" data-icon="language">language</span>
+<span class="font-label-md text-label-md">Audio: Indonesia</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+<div class="absolute right-0 mt-2 w-48 glass-ui rounded-xl overflow-hidden hidden group-hover:block z-[60]">
+<a class="block px-md py-3 hover:bg-primary/40 transition-colors font-label-md text-label-md" href="#">Indonesia</a>
+<a class="block px-md py-3 hover:bg-primary/40 transition-colors font-label-md text-label-md" href="#">English</a>
+<a class="block px-md py-3 hover:bg-primary/40 transition-colors font-label-md text-label-md" href="#">Buton</a>
+</div>
+</div>
+<!-- Fullscreen Toggle -->
+<button class="p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all active:scale-90" onclick="toggleFullscreen()">
+<span class="material-symbols-outlined" data-icon="fullscreen">fullscreen</span>
+</button>
+</div>
+</header>
+<!-- Main 360 Viewer Canvas -->
+<main class="viewer-container w-full mt-16 flex items-center justify-center">
+<!-- Background 360 Placeholder -->
+<div class="absolute inset-0 z-0">
+<img alt="Virtual Tour Background" class="w-full h-full object-cover opacity-60 scale-110" data-alt="A panoramic 360-degree high-resolution landscape of the historic Benteng Keraton Buton in Baubau. The ancient stone walls stretch across the lush green hills under a dramatic sunset sky with golden and deep blue hues. The lighting is cinematic, highlighting the weathered textures of the limestone fortifications. The atmosphere is majestic and serene, capturing the immense scale of the world's largest fortress in a professional, travel-editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDevlm7i3Gwnps1KdXGoaLir0CR_uM49AEq4A7tnZQhfSh_kCLnBt5CbOVqLLwdTXR4mxf0bwMuKBOHF5lB-RhyvgxB9h05khoLFM_3QS6iRt1BhJ9smZrvK4rbLPj08gE-9hw1gmh1_TbUkVKi92DMUIMEifvHiESN601WUii2rnwYVtEoZczAgb9wnb3u4WTWNl-MYniHEldROM5vXrFuGfaONKjnmMVMoW27rUqeh84V-Nv32pQn3oGoUMgNv_GXWpxu-2KsgRM"/>
+</div>
+<!-- Central 360 Indicator -->
+<div class="relative z-10 flex flex-col items-center gap-md group cursor-pointer">
+<div class="w-32 h-32 rounded-full border-2 border-dashed border-primary-fixed-dim flex items-center justify-center rotate-slow group-hover:border-solid transition-all"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display-lg-mobile text-display-lg-mobile font-extrabold text-white tracking-widest">360°</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary-fixed-dim">View</span>
+</div>
+<p class="font-body-sm text-body-sm text-white/60 mt-4 opacity-0 group-hover:opacity-100 transition-opacity">Seret untuk menjelajah</p>
+</div>
+<!-- Interactive Hotspots (Asymmetric Layout Overlay) -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Hotspot: Kasulana Tombi -->
+<div class="absolute top-[30%] left-[20%] pointer-events-auto flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full glass-ui flex items-center justify-center text-primary-fixed-dim group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<span class="bg-black/40 px-3 py-1 rounded-full font-label-sm text-label-sm backdrop-blur-sm border border-white/10">Kasulana Tombi</span>
+</div>
+<!-- Hotspot: Masjid Agung -->
+<div class="absolute bottom-[40%] right-[25%] pointer-events-auto flex flex-col items-center gap-2 group">
+<div class="w-10 h-10 rounded-full glass-ui flex items-center justify-center text-primary-fixed-dim group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="mosque" style="font-variation-settings: 'FILL' 1;">mosque</span>
+</div>
+<span class="bg-black/40 px-3 py-1 rounded-full font-label-sm text-label-sm backdrop-blur-sm border border-white/10">Masjid Agung</span>
+</div>
+</div>
+<!-- Navigation Spots (Bottom Float Bar) -->
+<nav class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 flex gap-sm glass-ui p-2 rounded-2xl shadow-xl">
+<button class="px-md py-3 rounded-xl spot-active transition-all font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="flag">flag</span>
+                Kasulana Tombi
+            </button>
+<button class="px-md py-3 rounded-xl spot-inactive hover:bg-white/20 transition-all border border-white/5 font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="temple_hindu">temple_hindu</span>
+                Masjid Agung
+            </button>
+<button class="px-md py-3 rounded-xl spot-inactive hover:bg-white/20 transition-all border border-white/5 font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="landslide">landslide</span>
+                Batu Popaua
+            </button>
+</nav>
+<!-- Compass & Controls -->
+<div class="absolute right-md bottom-[120px] flex flex-col gap-sm">
+<div class="glass-ui p-3 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+</div>
+<div class="glass-ui p-3 rounded-2xl flex flex-col gap-md">
+<button class="text-white/70 hover:text-white"><span class="material-symbols-outlined" data-icon="add">add</span></button>
+<div class="h-px bg-white/10"></div>
+<button class="text-white/70 hover:text-white"><span class="material-symbols-outlined" data-icon="remove">remove</span></button>
+</div>
+</div>
+<!-- Info Sidebar (Glassmorphism Card) -->
+<aside class="absolute left-md top-md bottom-md w-72 glass-ui rounded-3xl p-lg hidden lg:flex flex-col gap-md overflow-y-auto mt-16 mb-16">
+<div class="space-y-sm">
+<span class="font-label-sm text-label-sm text-primary-fixed-dim uppercase tracking-widest">Sekarang di</span>
+<h2 class="font-headline-md text-headline-md leading-tight">Tiang Bendera Kasulana Tombi</h2>
+</div>
+<div class="w-full aspect-video rounded-xl overflow-hidden">
+<img alt="Kasulana Tombi Detail" class="w-full h-full object-cover" data-alt="A close-up shot of the historic Kasulana Tombi flagpole at the Buton Fortress. The image captures the weathered texture of the wood and the stone base against a clear blue sky. The lighting is bright and natural, reflecting a clear day in Baubau. The style is clean, documentary-focused, and high-quality photography consistent with a modern travel platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC19ynLG6yfpUucJNozE811TQyWlUZO1c0yKMl3LYVCUMYaihYpDQAjqJOHWiW9pSIonlTPXxbat_WD5BGpE5bgg-OIqc4KjNmE4UQ3kDnFv--zMNOGeld8dwubbwDniqkZtMTl3U0ThAwQ8DpGC00q0rMqECtiegbXbAjNVuK_VJalRWIEYq6K0Gf5LXupgAjMea1Q5bNweG4WKRWpgJGHmuyRqte0TXHp2fjXYF82re0FDy8isiWuxR7kxpIndscSse4AiBEl910"/>
+</div>
+<p class="font-body-sm text-body-sm text-white/70 leading-relaxed">
+                Tiang bendera bersejarah ini merupakan salah satu ikon utama di Benteng Keraton Buton, melambangkan kedaulatan Kesultanan Buton di masa lampau. Berdiri kokoh di atas bukit dengan pemandangan langsung ke Teluk Baubau.
+            </p>
+<div class="mt-auto space-y-sm">
+<button class="w-full py-3 rounded-xl bg-primary-fixed-dim text-on-primary-fixed font-label-md text-label-md flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+                    Detail Sejarah
+                </button>
+<button class="w-full py-3 rounded-xl border border-white/20 hover:bg-white/5 text-white font-label-md text-label-md transition-all">
+                    Ambil Foto (Snapshot)
+                </button>
+</div>
+</aside>
+</main>
+<!-- UI Overlay Mini Interactions -->
+<script>
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Simulating 360 rotation on mouse move for atmospheric effect
+        const viewer = document.querySelector('main img');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 10;
+            viewer.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+        });
+
+        // Spot Switching Logic (Visual Only)
+        const spots = document.querySelectorAll('nav button');
+        spots.forEach(btn => {
+            btn.addEventListener('click', () => {
+                spots.forEach(s => {
+                    s.classList.remove('spot-active');
+                    s.classList.add('spot-inactive');
+                });
+                btn.classList.add('spot-active');
+                btn.classList.remove('spot-inactive');
+            });
+        });
+    </script>
+</body></html>

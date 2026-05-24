@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Baubau Creative Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c8c6c3",
+                    "on-secondary-fixed-variant": "#5a4312",
+                    "surface-variant": "#e8e1d8",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-container": "#94c5ee",
+                    "background": "#fff8f1",
+                    "on-tertiary-fixed": "#1b1c1a",
+                    "surface-container-high": "#eee7de",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-container": "#795f2b",
+                    "on-surface-variant": "#41474e",
+                    "on-error-container": "#93000a",
+                    "inverse-surface": "#33302a",
+                    "primary": "#003b5a",
+                    "secondary": "#745a27",
+                    "tertiary": "#373736",
+                    "outline-variant": "#c1c7cf",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001e30",
+                    "primary-container": "#1a5276",
+                    "inverse-primary": "#9bccf6",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#0e4b6e",
+                    "tertiary-container": "#4e4e4c",
+                    "tertiary-fixed": "#e4e2df",
+                    "surface-container": "#f4ede3",
+                    "on-tertiary-container": "#c1bfbd",
+                    "surface": "#fff8f1",
+                    "on-background": "#1e1b16",
+                    "surface-container-highest": "#e8e1d8",
+                    "on-surface": "#1e1b16",
+                    "surface-container-low": "#faf3e9",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#fff8f1",
+                    "primary-fixed-dim": "#9bccf6",
+                    "secondary-fixed": "#ffdea4",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#e4c285",
+                    "on-secondary-fixed": "#261900",
+                    "outline": "#72787f",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-tint": "#2f6388",
+                    "secondary-container": "#fedb9b",
+                    "primary-fixed": "#cbe6ff",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "3xl": "64px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #fff8f1; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-background selection:bg-secondary-container">
+<!-- Top App Bar -->
+<header class="bg-surface sticky top-0 z-40 shadow-sm flex justify-between items-center w-full px-md py-sm">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary text-headline-lg-mobile" data-icon="anchor">anchor</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Pesona Baubau</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="relative p-2 rounded-full hover:bg-surface-container-low transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-1 right-1 bg-error text-on-error text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold">2</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional close-up portrait of a friendly Southeast Asian man in his 30s with a warm smile, set against a soft-focus office background. The lighting is bright and natural, reflecting a clean and modern digital-professional aesthetic. The overall color palette is composed of soft creams and warm greys, aligning with a corporate minimalist design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQUu6MnRzFgi5tnn5-4OKOqrLGHkiXh-aDE4v85x6KOjugFiAmo3vavJhoG6YeusZuiZYWckHHg4ekAM1roTOHmE7_tUEUZ28DkDsgBcpjQWVmGzFsITwquXlE9UCKKzeC4EXz_W6oC_x1xurvDgNjTH5kDJkI9LqOHfWvu89oXhvUIEwm8N4D1oIvlddGX3SAfMij1LVSMPve5v8wKjakvB6nOqTBPvkxBnke6J9wEPB_WyWw-WHMzEnrJVmTRISNIq5uxgPdZuo"/>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-md pb-32 pt-md">
+<!-- Title Section -->
+<section class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Baubau Creative Marketplace</h2>
+<p class="font-body-sm text-on-surface-variant mt-xs">Temukan produk UMKM terbaik asli dari Buton</p>
+</section>
+<!-- Search Bar -->
+<section class="mb-lg">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-md text-outline" data-icon="search">search</span>
+<input class="w-full pl-xl pr-md py-md bg-surface-container-lowest border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md shadow-sm" placeholder="Cari produk kreatif..." type="text"/>
+</div>
+</section>
+<!-- Filter Chips -->
+<section class="mb-lg -mx-md px-md overflow-x-auto hide-scrollbar flex gap-sm">
+<button class="px-md py-sm bg-primary text-on-primary rounded-full font-label-md transition-transform active:scale-95 shrink-0">Semua</button>
+<button class="px-md py-sm bg-surface-container-high text-on-surface-variant rounded-full font-label-md hover:bg-surface-container-highest transition-all shrink-0">Tenun</button>
+<button class="px-md py-sm bg-surface-container-high text-on-surface-variant rounded-full font-label-md hover:bg-surface-container-highest transition-all shrink-0">Kuliner</button>
+<button class="px-md py-sm bg-surface-container-high text-on-surface-variant rounded-full font-label-md hover:bg-surface-container-highest transition-all shrink-0">Suvenir</button>
+<button class="px-md py-sm bg-surface-container-high text-on-surface-variant rounded-full font-label-md hover:bg-surface-container-highest transition-all shrink-0">Kerajinan</button>
+</section>
+<!-- Product Grid -->
+<div class="grid grid-cols-2 gap-md">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group">
+<div class="aspect-square relative overflow-hidden">
+<img alt="Tenun Buton" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A macro shot of a traditional hand-woven Butonese textile, showcasing intricate geometric patterns in deep blue, gold, and white. The lighting is soft and side-angled to emphasize the rich texture of the threads. The scene is presented in a high-end editorial photography style, with a warm and sophisticated mood that reflects local cultural heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa7EycdJPP8HVqn4VbFRyp_F2LwVwHzqiYYsCOqvsI9Js0osxAzheMl06G05e_bgWNkfczwbPoxIx3_dtaJkIsTX6FvKAyRhcsvRBWMMzNhJ3uGkBtywYZaUEFIEgxDleEcrC8IuV2ak5vEWXiF73IF_FbQBc8d_eLgyEAWxXMfgowRfUFeUS3exvHUBX7BRaxWZNTnuIM42K852dYwqkWi2DWqYBDb77c6nykQBkwfq8t0yRj9MGAZD3MDsf39tACZ2m761s7-cY"/>
+<span class="absolute top-sm right-sm bg-secondary-container text-on-secondary-container px-sm py-xs rounded-lg text-[10px] font-bold uppercase tracking-wider">Premium</span>
+</div>
+<div class="p-md">
+<h3 class="font-label-md text-on-surface line-clamp-1">Kain Tenun Buton Motif Bhia</h3>
+<p class="font-headline-sm text-primary mt-xs">Rp 450.000</p>
+<div class="flex items-center gap-xs mt-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="person">person</span>
+<span class="text-label-sm">UMKM Barakati</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group">
+<div class="aspect-square relative overflow-hidden">
+<img alt="Kasuami" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A beautifully plated traditional Kasuami dish made from fermented cassava, served on a rustic ceramic plate alongside fresh seafood. The lighting is bright and airy, creating a fresh light-mode aesthetic that emphasizes the natural textures of the food. The setting is a clean, modern kitchen with soft wooden accents and a professional culinary photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbtxo2eTcPoMQvQvxkm40jQS4I5EkzfSN_hHcVhTgEfq3OectxrVXcZk7rPGlNzT3BEbu7Z685AC5lg5szGdibkt25WiTFjSBUC6r8uRDGF5zP8J3Umj1p090w1SqAr5Fnxi_bAOSSGijpsfx8Xuf32SXPdr_ncjb8Cg6EHdgrtEcTrZCv_I5In_HQq0zoV5OGeU9q8Ro0Yc6Ue3bILSs74GVQoqR3u1FfJMfkdD8SIK_zdQzMv_YoMncLgj3cbr0HHTRhlQ-31OY"/>
+</div>
+<div class="p-md">
+<h3 class="font-label-md text-on-surface line-clamp-1">Kasuami Instan Premium</h3>
+<p class="font-headline-sm text-primary mt-xs">Rp 25.000</p>
+<div class="flex items-center gap-xs mt-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="person">person</span>
+<span class="text-label-sm">Dapur Wolio</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group">
+<div class="aspect-square relative overflow-hidden">
+<img alt="Miniatur Kapal" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A detailed wooden miniature of a traditional Butonese boat, handcrafted with precision and displayed on a sleek marble surface. The lighting is high-key and professional, casting soft shadows that highlight the craftsmanship. The atmosphere is elegant and authoritative, with a palette of warm wood tones and clean white backgrounds characteristic of a modern gallery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsYi2itrMVrhy0jU5YLEwChuW8swU_-EctaAolgU8F9mIo78bA67QFTsS25hYvcZix1VqqyzF9UhPyDLnHiVBbLdRDvl3KZGQjQqrxm2nXVH_FtV7FpjozQDKeiee23xLvGPYwG_9ZMTI3ev7VUipcYk0f55uocyICZbbtgsjU_ro9ky_-IVOXMAPMYVbYO23hbfXwMYUw-xKI_yiqni6N_4jjkHyeMeLgeeMPeYEEa3EhA03-KVY_srQgouDVuDlwMmEaSfbGtIo"/>
+</div>
+<div class="p-md">
+<h3 class="font-label-md text-on-surface line-clamp-1">Miniatur Kapal Lambo</h3>
+<p class="font-headline-sm text-primary mt-xs">Rp 175.000</p>
+<div class="flex items-center gap-xs mt-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="person">person</span>
+<span class="text-label-sm">Karya Bahari</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_2px_8px_rgba(0,0,0,0.06)] group">
+<div class="aspect-square relative overflow-hidden">
+<img alt="Gantungan Kunci" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A collection of handmade beaded keychains featuring motifs inspired by Southeast Asian art. The keychains are laid out on a clean white surface under bright, diffused light. The colors of the beads—vibrant blues, golds, and blacks—pop against the minimalist background. The photography style is modern, product-focused, and highly detailed, conveying a sense of quality and artisanal value." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwpWxf2vQpm36Gr-Z6FaMqhNswtkUxdmAkhv6Br6IiQ8Urdnwc3IDotJG2RPpIAL5IHSgYUamzHmx29rHl97puVrgbWR2D12Vvh9jz9Gdqf-FxpHYhGMDnBeFfkFplvRfONTARd1c1Z19Kg-JlEpBnJuH35KrnWz6NkUt8jRhh-INZln6iLH4NDfaP492BUUZ_XTW9_rp9gUuD6CXi0gNDUYki56q8pzPxAsQ3pOyqNyUu6YTEgpQeWYEmYeIIoCT5cSQTvgs42S0"/>
+</div>
+<div class="p-md">
+<h3 class="font-label-md text-on-surface line-clamp-1">Gantungan Kunci Kerang</h3>
+<p class="font-headline-sm text-primary mt-xs">Rp 15.000</p>
+<div class="flex items-center gap-xs mt-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]" data-icon="person">person</span>
+<span class="text-label-sm">Souvenir Butuni</span>
+</div>
+</div>
+</div>
+</div>
+<!-- WhatsApp Float Button -->
+<button class="fixed right-lg bottom-24 bg-[#25D366] text-white flex items-center gap-sm px-lg py-md rounded-full shadow-lg hover:shadow-xl transition-all active:scale-95 z-50">
+<svg class="w-6 h-6 fill-current" viewbox="0 0 24 24">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+<span class="font-label-md">Pesan via WhatsApp</span>
+</button>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-safe pt-2 bg-surface shadow-[0_-2px_8px_rgba(0,0,0,0.06)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-tertiary-container px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Beranda</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-label-sm text-label-sm">Market</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+<span class="font-label-sm text-label-sm">Event</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 hover:bg-surface-container-highest transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for filter chips
+        const filterChips = document.querySelectorAll('section > button');
+        filterChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                filterChips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                chip.classList.add('bg-primary', 'text-on-primary');
+            });
+        });
+
+        // Add some atmospheric scroll effects
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>

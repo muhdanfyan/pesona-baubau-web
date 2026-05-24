@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kelola Destinasi - Dispar Baubau</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fff8f1",
+                    "on-tertiary-fixed": "#1b1c1a",
+                    "on-surface-variant": "#41474e",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fedb9b",
+                    "on-primary-fixed": "#001e30",
+                    "on-secondary-container": "#795f2b",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#9bccf6",
+                    "inverse-primary": "#9bccf6",
+                    "secondary-fixed": "#ffdea4",
+                    "on-secondary-fixed-variant": "#5a4312",
+                    "primary-fixed": "#cbe6ff",
+                    "on-primary-container": "#94c5ee",
+                    "inverse-on-surface": "#f7f0e6",
+                    "primary-container": "#1a5276",
+                    "on-tertiary-container": "#c1bfbd",
+                    "error": "#ba1a1a",
+                    "secondary": "#745a27",
+                    "tertiary": "#373736",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f4ede3",
+                    "surface": "#fff8f1",
+                    "tertiary-fixed-dim": "#c8c6c3",
+                    "on-secondary": "#ffffff",
+                    "background": "#fff8f1",
+                    "secondary-fixed-dim": "#e4c285",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed-variant": "#0e4b6e",
+                    "on-tertiary-fixed-variant": "#474745",
+                    "surface-variant": "#e8e1d8",
+                    "surface-container-high": "#eee7de",
+                    "surface-tint": "#2f6388",
+                    "tertiary-container": "#4e4e4c",
+                    "on-surface": "#1e1b16",
+                    "surface-container-highest": "#e8e1d8",
+                    "surface-container-low": "#faf3e9",
+                    "outline-variant": "#c1c7cf",
+                    "inverse-surface": "#33302a",
+                    "tertiary-fixed": "#e4e2df",
+                    "primary": "#003b5a",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#72787f",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#261900",
+                    "on-background": "#1e1b16"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        background-color: #F5F3F0;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(8px);
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #003b5a;
+        border-radius: 10px;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-surface-bright dark:bg-surface-dim shadow-sm fixed top-0 w-full z-50 flex justify-between items-center px-md h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-low transition-colors rounded-full active:scale-95 duration-150" data-icon="menu">menu</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Dispar Baubau</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="Official Profile Picture" data-alt="A professional portrait of a government official for a profile picture, set against a soft, neutral studio background with bright, even lighting. The man is wearing a formal navy blue suit that matches the corporate maritime theme. High-resolution photography with a clean, modern aesthetic and shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoNy-HcAsYRlXfyFIfavWdbvYEx6W5s84iYYK1va2J_FdXZO4VumA-SkF0RS2xvCsiGJve0QrCcirTz9vnUw6ZVSBCt6A54E5uZggsvQuS6-QLfovaFrftw4D94vrR14-marAmiXF85p6tiyHfECX2_t-dI-60JinexnQJSc5r-QNnPOP8qC0uPEdN8I0JDALlWmtayw_7I1nlryOIg3EWM1jgEXw7071HCcUxdPyxC__yGNNqgJNRBgp0tQqiVGyMpn8fRJ1E-9k"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop) -->
+<aside class="hidden md:flex fixed inset-y-0 left-0 z-[60] flex flex-col py-lg h-full w-72 rounded-r-xl bg-surface-container shadow-md mt-16">
+<div class="px-6 mb-8 flex flex-col items-start">
+<h2 class="font-headline-sm text-headline-sm text-primary mb-1">Admin Dinas</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Pemerintah Kota Baubau</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="text-on-surface-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 flex items-center gap-4 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="map" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-label-md text-label-md">Destinations</span>
+</a>
+<a class="text-on-surface-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="text-on-surface-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="text-on-surface-variant mx-2 px-4 py-3 flex items-center gap-4 hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 py-4">
+<span class="font-label-sm text-label-sm text-outline">V1.2.0</span>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-24 pb-20 md:pb-8 md:pl-80 px-4 md:pr-8 max-w-[1440px] mx-auto">
+<!-- Header Section -->
+<section class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Kelola Destinasi</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manajemen katalog wisata Kota Baubau.</p>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-full flex items-center gap-2 shadow-md hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                Tambah Destinasi
+            </button>
+</section>
+<!-- Filters & Search -->
+<section class="bg-white rounded-xl shadow-sm p-4 mb-8 flex flex-col md:flex-row gap-4 items-center">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md text-body-md" placeholder="Cari nama destinasi..." type="text"/>
+</div>
+<div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 font-body-md text-body-md focus:ring-primary">
+<option>Semua Kategori</option>
+<option>Wisata Alam</option>
+<option>Budaya &amp; Sejarah</option>
+<option>Kuliner</option>
+<option>Religi</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-4 py-2 font-body-md text-body-md focus:ring-primary">
+<option>Status: Semua</option>
+<option>Aktif</option>
+<option>Draft</option>
+</select>
+</div>
+</section>
+<!-- Destination Table -->
+<section class="bg-white rounded-xl shadow-sm overflow-hidden border border-outline-variant">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-6 py-4 font-label-md text-label-md">Destinasi</th>
+<th class="px-6 py-4 font-label-md text-label-md">Kategori</th>
+<th class="px-6 py-4 font-label-md text-label-md">Rating</th>
+<th class="px-6 py-4 font-label-md text-label-md">Status</th>
+<th class="px-6 py-4 font-label-md text-label-md text-right">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Benteng Keraton Buton" data-alt="A wide cinematic shot of the historic Benteng Keraton Buton fortress in Baubau at sunset. The ancient stone walls glow under a warm golden light, with lush tropical greenery in the background. The atmosphere is majestic and serene, emphasizing the heritage and scale of the maritime hub architecture. High-quality travel photography style with vibrant blues and gold tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbluQf4U2AbzQHJEDlglHdfUnm75lh9QU9zrq2r3mW0o_IwdHZhcTVCWmBswYmCl612EYOCTQCiw4mdI25OGlrvKsxgjOw_zTuHO04alXOwaM1cOCP0zE3phDiEHr9Ez8ucKEfFnCkF5V-zrTOdCLalTTpVp8Okmm7TmZLX7tU9dvzw27w3CZS2eZz_pFyzxJQuJowz3xi_OHaZr_l6HXgfhPi6Vo7aerdLGt9WDYa_uNjlK-prp-5teWOjOCzBEy5AkugdYFdpC8"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary">Benteng Keraton Buton</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Baubau, Sulawesi Tenggara</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Budaya &amp; Sejarah</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md">4.9</span>
+<span class="font-body-sm text-body-sm text-outline">(1.2k)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-label-sm text-label-sm inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> Aktif
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-primary hover:bg-primary-container/20 rounded-lg transition-colors" title="Statistik">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+</button>
+<button class="p-2 text-secondary hover:bg-secondary-container/20 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Pantai Nirwana" data-alt="A breathtaking view of Pantai Nirwana beach in Baubau, featuring crystal clear turquoise waters and pristine white sand. The sun is high, creating a bright and airy atmosphere. The composition includes some traditional wooden boats and swaying palm trees at the edge. The visual style is professional tropical editorial, highlighting the serene and luxurious maritime feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDovlZv59gOZi850KELnmVo6R44aRi3cAgb4bIhZ7uJwb4RM2j790LhXVEt9bXYzcQq5yiXiUsVsejTOZN8ehELJeKmG4xnjKohSaWBv7zMrNK7VUZ-gcK-f40-RBxuGKffeN0QjVwocB8xMtw9HsE9MRlupgFXFsCl-vnykrdByOVsSRdxNRjjtSzfg3nlHHfEWGPm4uIMO1qrF8uOAFO8i8eIWGY9yPuTBhl_30NfioWNWUP8dbysl3eOtrVnk7JPRcJCVPpMow"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary">Pantai Nirwana</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Sulaa, Betoambari</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Wisata Alam</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md">4.8</span>
+<span class="font-body-sm text-body-sm text-outline">(850)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-label-sm text-label-sm inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> Aktif
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-primary hover:bg-primary-container/20 rounded-lg transition-colors" title="Statistik">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+</button>
+<button class="p-2 text-secondary hover:bg-secondary-container/20 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Hutan Pinus Samparona" data-alt="A moody and atmospheric shot of Samparona Pine Forest in Baubau, with tall, straight pine trees fading into a soft morning mist. The lighting is diffused and cool, creating a tranquil and mysterious vibe. The forest floor is covered in fallen needles and soft ferns. Professional photography focusing on texture, depth, and the serene nature of the highland landscape." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgSj2xouAGPgblY063MneDo4IGPHZk2QCcTgEMGHEJBfjZ_V--m0MbDaHMCxor9mjaLG70aNuD6cSeZ0HoHgtblCsK4R8H-uFkJpNCGnem4yqaLbetYigKQeGGA-wEiR0TS5Sd7i5sAd7IkJNBSR5v4vnX0GrXW_QDEVMfqpfwTgzakv3uDm9v5XG8OXKypOTuMmnIETRg7bqesGhbjVt3rKeOqlpiRfDXR5j8szEv20uInEBIhR3z5McGK6PiiCRnJEr2eNyM-ic"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary">Hutan Pinus Samparona</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Kecamatan Sorawolio</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Wisata Alam</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md">4.5</span>
+<span class="font-body-sm text-body-sm text-outline">(340)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full font-label-sm text-label-sm inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-orange-500"></span> Draft
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-primary hover:bg-primary-container/20 rounded-lg transition-colors" title="Statistik">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+</button>
+<button class="p-2 text-secondary hover:bg-secondary-container/20 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-16 h-12 rounded-lg overflow-hidden bg-surface-container flex-shrink-0">
+<img alt="Sentra Tenun Buton" data-alt="A detailed close-up shot of a traditional Butonese weaving center, showing an artisan's hands working on a colorful loom. The fabric features intricate geometric patterns in gold, navy, and cream. The lighting is warm and domestic, capturing the authentic cultural craft of Baubau. High-end editorial style focusing on craftsmanship, tradition, and heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_pQ9k9jehIC74hhB53D8YjsRymyOqxeGl2DwDhFxaZhNg1QqE3BP3GxVnoS__EgkfWKKmCRUVYFhGgQ2BZ8D9VlX4C8MDIW5Z1uv1OH2mLquO7MZN6x2o0q2XiFO3IZHuB1erhMjba15-6O5iY6_1uEOybG81317jpqZAxAvmUZ843QTxEvSOVn0vW2W6xVM2BeChbm2O2X0G32Ha6AO9Kws3PTBdONh0AZcDUgyBMyIAuNC1-iz9Fmyh--ep8fxXj_j_Frysfhc"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary">Sentra Tenun Buton</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Baadia, Murhum</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 font-body-md text-body-md">Budaya &amp; Sejarah</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md">4.7</span>
+<span class="font-body-sm text-body-sm text-outline">(128)</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full font-label-sm text-label-sm inline-flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500"></span> Aktif
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-2 text-primary hover:bg-primary-container/20 rounded-lg transition-colors" title="Statistik">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+</button>
+<button class="p-2 text-secondary hover:bg-secondary-container/20 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined" data-icon="edit">edit</span>
+</button>
+<button class="p-2 text-error hover:bg-error-container/20 rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container flex items-center justify-between border-t border-outline-variant">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Menampilkan 1-4 dari 24 destinasi</p>
+<div class="flex items-center gap-1">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-outline disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-sm text-label-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">...</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-bright dark:bg-surface-dim border-t border-outline-variant shadow-sm flex justify-around items-center h-16 w-full pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home_storage">home_storage</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="map" style="font-variation-settings: 'FILL' 1;">map</span>
+<span class="font-label-sm text-label-sm">Dests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-sm text-label-sm">Stats</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple hover interaction enhancement
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                row.style.transform = 'translateY(-2px)';
+                row.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)';
+            });
+            row.addEventListener('mouseleave', () => {
+                row.style.transform = 'translateY(0)';
+                row.style.boxShadow = 'none';
+            });
+        });
+    </script>
+</body></html>

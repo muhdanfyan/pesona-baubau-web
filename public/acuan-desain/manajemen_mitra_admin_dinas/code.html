@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Manajemen Mitra UMKM - Dispar Baubau</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#fff8f1",
+                    "on-tertiary-fixed": "#1b1c1a",
+                    "on-surface-variant": "#41474e",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fedb9b",
+                    "on-primary-fixed": "#001e30",
+                    "on-secondary-container": "#795f2b",
+                    "on-error": "#ffffff",
+                    "primary-fixed-dim": "#9bccf6",
+                    "inverse-primary": "#9bccf6",
+                    "secondary-fixed": "#ffdea4",
+                    "on-secondary-fixed-variant": "#5a4312",
+                    "primary-fixed": "#cbe6ff",
+                    "on-primary-container": "#94c5ee",
+                    "inverse-on-surface": "#f7f0e6",
+                    "primary-container": "#1a5276",
+                    "on-tertiary-container": "#c1bfbd",
+                    "error": "#ba1a1a",
+                    "secondary": "#745a27",
+                    "tertiary": "#373736",
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f4ede3",
+                    "surface": "#fff8f1",
+                    "tertiary-fixed-dim": "#c8c6c3",
+                    "on-secondary": "#ffffff",
+                    "background": "#fff8f1",
+                    "secondary-fixed-dim": "#e4c285",
+                    "surface-dim": "#e0d9d0",
+                    "on-primary-fixed-variant": "#0e4b6e",
+                    "on-tertiary-fixed-variant": "#474745",
+                    "surface-variant": "#e8e1d8",
+                    "surface-container-high": "#eee7de",
+                    "surface-tint": "#2f6388",
+                    "tertiary-container": "#4e4e4c",
+                    "on-surface": "#1e1b16",
+                    "surface-container-highest": "#e8e1d8",
+                    "surface-container-low": "#faf3e9",
+                    "outline-variant": "#c1c7cf",
+                    "inverse-surface": "#33302a",
+                    "tertiary-fixed": "#e4e2df",
+                    "primary": "#003b5a",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#72787f",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#261900",
+                    "on-background": "#1e1b16"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "lg": "24px",
+                    "3xl": "64px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav-drawer {
+            background-color: #fedb9b;
+            color: #795f2b;
+            border-radius: 9999px;
+        }
+        body {
+            background-color: #F5F3F0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-bright shadow-sm flex justify-between items-center px-md h-16 w-full">
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-primary p-2 hover:bg-surface-container-low transition-colors rounded-full active:scale-95 duration-150">menu</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Dispar Baubau</h1>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center gap-lg mr-lg">
+<span class="text-primary font-bold font-label-md cursor-pointer">Manajemen Mitra</span>
+<span class="text-on-surface-variant font-label-md cursor-pointer hover:text-primary">Destinasi</span>
+<span class="text-on-surface-variant font-label-md cursor-pointer hover:text-primary">Laporan</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="Admin" data-alt="A professional headshot of a government official in a clean, modern office setting. The lighting is soft and natural, emphasizing a corporate and authoritative yet approachable atmosphere. The background features minimalist Butonese cultural elements in a light-mode aesthetic with warm cream and blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF412Lg4MNEK8RlBsdFRBS2-IPUvia_JwNf4CDm2GyYYOxt9YDsHIOaonaPid9m22jxo2cw25aQjyUM5z4o_scH8Hd5Z1ttz1gZC_IMpxvL_vKDReu0HYKVJo0hqTA0JLu6Bah_fzU2qWfFcWSKqAfzLKtglBpT2zHFvXuCGd6G6p0okS75fwE9l685E_jf21rCi9o_aam2AkTl7Ys0-OYFZEtaJplfyHaFk2BZJQvMCF5jsTk4NCDMXwzPSmPZ-vrAErBxuI3Kl8"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer (Desktop Only Sidebar Simulation) -->
+<aside class="hidden lg:flex fixed inset-y-0 left-0 z-[60] flex flex-col py-lg bg-surface-container h-full w-72 rounded-r-xl shadow-md mt-16">
+<div class="px-lg mb-lg">
+<div class="flex items-center gap-md mb-xs">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shield_person</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary font-bold">Admin Dinas</p>
+<p class="text-label-sm text-on-surface-variant">Pemerintah Kota Baubau</p>
+</div>
+</div>
+<p class="text-[10px] text-outline mt-sm">V1.2.0</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="mx-2 px-4 py-3 flex items-center gap-4 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="bg-secondary-container text-on-secondary-container rounded-full mx-2 px-4 py-3 flex items-center gap-4 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-label-md text-label-md">Destinations</span>
+</a>
+<a class="mx-2 px-4 py-3 flex items-center gap-4 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="mx-2 px-4 py-3 flex items-center gap-4 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="mx-2 px-4 py-3 flex items-center gap-4 text-on-surface-variant hover:bg-surface-variant rounded-full transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-24 pb-20 px-4 md:px-lg lg:ml-72 max-w-[1280px] mx-auto min-h-screen">
+<!-- Header & Summary Section -->
+<section class="mb-xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-lg">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Manajemen Mitra UMKM</h2>
+<p class="text-body-md text-on-surface-variant">Kelola seluruh kemitraan pelaku usaha pariwisata Baubau</p>
+</div>
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Cari nama toko atau kategori..." type="text"/>
+</div>
+</div>
+<!-- Summary Cards (Bento style) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-white p-lg rounded-xl shadow-sm border-l-4 border-primary flex items-center gap-lg">
+<div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">group</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Total Mitra Aktif</p>
+<p class="font-display-lg text-display-lg text-primary">1,284</p>
+</div>
+</div>
+<div class="bg-secondary-container p-lg rounded-xl shadow-sm flex items-center gap-lg">
+<div class="w-14 h-14 rounded-full bg-white/50 flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-3xl">pending_actions</span>
+</div>
+<div>
+<p class="text-label-sm text-on-secondary-container uppercase tracking-wider">Menunggu Verifikasi</p>
+<p class="font-display-lg text-display-lg text-on-secondary-container">12</p>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl shadow-sm border-l-4 border-secondary flex items-center gap-lg">
+<div class="w-14 h-14 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-3xl">trending_up</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-wider">Pertumbuhan (Bulan Ini)</p>
+<p class="font-display-lg text-display-lg text-secondary">+8.4%</p>
+</div>
+</div>
+</div>
+</section>
+<!-- List Menunggu Verifikasi -->
+<section class="mb-3xl">
+<div class="flex items-center gap-sm mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Menunggu Verifikasi</h3>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded-full text-label-sm font-bold">12 Baru</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md">
+<!-- Mitra Card 1 -->
+<div class="bg-white p-md rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex gap-md mb-md">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Kedai Tenun" data-alt="A macro photograph of high-quality traditional Butonese hand-woven fabric with intricate geometric patterns in blue, gold, and cream. The texture is rich and tactile, illuminated by warm, directional light that highlights the craftsmanship. The style is editorial and luxurious, fitting a premium artisan boutique brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhSyi-LkEJoL6EjzOcwUmg59h3Y_LOh6i0W57R-wkTTpXoJUkI5c2cNMn11poPLRyYzlnVgT_EUjsWIllbLzwr3GtdMfToZvuJJ8t1GJSDSN2e-AdJI9bbmTkcIk_QhqnJbRwalcw-fh9BdRLAk_wlgOoKk21SwxTNGq68Fa-LvnkwJ6n16-BsPv_O1SyiYK-Ed6o1YHFuqdOg4tMFFA-SDP6JWq9D0HNOa1RuqI8w1NIoTCWyHpjEyH80XNbzHhKjL-eRKMtYvfg"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary truncate">Kedai Tenun Sulaa</h4>
+<p class="text-body-sm text-on-surface-variant">Kerajinan &amp; Tekstil</p>
+<p class="text-label-sm text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Terdaftar: 2 jam yang lalu
+                            </p>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 px-3 py-2 border border-primary text-primary rounded-lg text-label-sm font-bold hover:bg-surface-container-low transition-colors">Lihat Berkas</button>
+<button class="flex-1 px-3 py-2 bg-primary text-white rounded-lg text-label-sm font-bold hover:opacity-90 transition-opacity">Verifikasi</button>
+<button class="px-3 py-2 text-error hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined">block</span>
+</button>
+</div>
+</div>
+<!-- Mitra Card 2 -->
+<div class="bg-white p-md rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex gap-md mb-md">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Sate Ambe" data-alt="A delicious, close-up food photography shot of traditional grilled sate on a ceramic plate. The meat is succulent and perfectly charred, glistening under soft studio lighting. Garnished with fresh herbs and traditional sambal. The background is a clean, neutral cream color that feels modern and high-end culinary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ5N3ip5E0LTI345a1OCsSOG3nL2WONmFSXRaHsRdEwVxwVWDOAL3i6FQO6eR24YDIxQAF_c-VvuyAidoBjyu08tlilAOaLNMgGu4Kz34mXjNpJ5qyaAGKy9J24ACcKJYXkFC_4UpvO_tcPLONSxr4roSgUTDGWqsI3eNMFIV324UzAt50izo4YGvewa5ogDcW6FOw6cYiIqlRadOpfm95eKc6Khal0yU8RAB-8KSktpVPR4PBUCc2vns9gP1KDMA15iEusXqqk60"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary truncate">Sate Ambe Baubau</h4>
+<p class="text-body-sm text-on-surface-variant">Kuliner Tradisional</p>
+<p class="text-label-sm text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Terdaftar: 5 jam yang lalu
+                            </p>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 px-3 py-2 border border-primary text-primary rounded-lg text-label-sm font-bold hover:bg-surface-container-low transition-colors">Lihat Berkas</button>
+<button class="flex-1 px-3 py-2 bg-primary text-white rounded-lg text-label-sm font-bold hover:opacity-90 transition-opacity">Verifikasi</button>
+<button class="px-3 py-2 text-error hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined">block</span>
+</button>
+</div>
+</div>
+<!-- Mitra Card 3 -->
+<div class="bg-white p-md rounded-xl shadow-sm border border-outline-variant hover:shadow-md transition-shadow">
+<div class="flex gap-md mb-md">
+<div class="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+<img alt="Homestay" data-alt="A bright and airy photograph of a modern homestay interior in Baubau, featuring traditional wooden architecture blended with minimalist contemporary furniture. Sunlight streams through large windows, creating a welcoming and peaceful atmosphere. The palette is dominated by warm wood tones, cream textiles, and subtle blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk98YX7NjhfvsxAdi33ZqZNcKj-hVJWsMwccjC-SfX7FfaKqu-goAwmmuPosAAFrQt3FSt6Oya2dm6yiibBUprtJixKpHQ8x9nznFLNoNFwPsl15CRir0lhjaOSX_FP-0brtuWkEkfEkrN4hPLtOfkXdmkO1s4yknpL1YDUHLeSUW1IIwHdAWAAdef_NbAhy-mWPwZBnoJmnLjW8ZeUW0UUELXozmpgPscbDQftFoNYNbW47x2Eg33npSIbLVo29bPrZlhPG7X5a4"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-primary truncate">Homestay Keraton</h4>
+<p class="text-body-sm text-on-surface-variant">Akomodasi &amp; Inap</p>
+<p class="text-label-sm text-outline flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                Terdaftar: 1 hari yang lalu
+                            </p>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 px-3 py-2 border border-primary text-primary rounded-lg text-label-sm font-bold hover:bg-surface-container-low transition-colors">Lihat Berkas</button>
+<button class="flex-1 px-3 py-2 bg-primary text-white rounded-lg text-label-sm font-bold hover:opacity-90 transition-opacity">Verifikasi</button>
+<button class="px-3 py-2 text-error hover:bg-error-container/20 rounded-lg transition-colors">
+<span class="material-symbols-outlined">block</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Daftar Semua Mitra Table -->
+<section>
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Daftar Semua Mitra</h3>
+<button class="flex items-center gap-1 text-primary font-bold text-label-md hover:underline">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                    Filter
+                </button>
+</div>
+<div class="bg-white rounded-xl shadow-sm overflow-hidden border border-outline-variant">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-4 font-label-md text-on-surface-variant">Nama Toko</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant">Kategori</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant">Tanggal Bergabung</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant">Status</th>
+<th class="px-lg py-4 font-label-md text-on-surface-variant">Aksi</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-4 flex items-center gap-md">
+<div class="w-8 h-8 rounded bg-primary-fixed-dim flex items-center justify-center text-primary text-xs font-bold">BK</div>
+<span class="font-bold text-primary">Bakso Kamali</span>
+</td>
+<td class="px-lg py-4 text-on-surface-variant">Kuliner</td>
+<td class="px-lg py-4 text-on-surface-variant">12 Jan 2024</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[12px] font-bold">Aktif</span>
+</td>
+<td class="px-lg py-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-4 flex items-center gap-md">
+<div class="w-8 h-8 rounded bg-secondary-fixed flex items-center justify-center text-secondary text-xs font-bold">TG</div>
+<span class="font-bold text-primary">Tenun Gajah Mada</span>
+</td>
+<td class="px-lg py-4 text-on-surface-variant">Oleh-oleh</td>
+<td class="px-lg py-4 text-on-surface-variant">05 Feb 2024</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[12px] font-bold">Aktif</span>
+</td>
+<td class="px-lg py-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-4 flex items-center gap-md">
+<div class="w-8 h-8 rounded bg-surface-container-highest flex items-center justify-center text-on-surface-variant text-xs font-bold">NV</div>
+<span class="font-bold text-primary">Nirwana Villa</span>
+</td>
+<td class="px-lg py-4 text-on-surface-variant">Penginapan</td>
+<td class="px-lg py-4 text-on-surface-variant">15 Mar 2024</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-error-container text-on-error-container rounded-full text-[12px] font-bold">Nonaktif</span>
+</td>
+<td class="px-lg py-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-4 flex items-center gap-md">
+<div class="w-8 h-8 rounded bg-primary-fixed flex items-center justify-center text-primary text-xs font-bold">CP</div>
+<span class="font-bold text-primary">Cafe Pantai Kamali</span>
+</td>
+<td class="px-lg py-4 text-on-surface-variant">F&amp;B</td>
+<td class="px-lg py-4 text-on-surface-variant">20 Mar 2024</td>
+<td class="px-lg py-4">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-[12px] font-bold">Aktif</span>
+</td>
+<td class="px-lg py-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-lg py-4 flex items-center justify-between bg-surface-container-lowest">
+<span class="text-label-sm text-outline">Menampilkan 1-10 dari 1,284 mitra</span>
+<div class="flex gap-sm">
+<button class="p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-bright border-t border-outline-variant shadow-sm flex justify-around items-center h-16 pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">home_storage</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-label-sm text-label-sm">Mitra</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-sm text-label-sm">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-transform active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('click', function(e) {
+                if (this.tagName === 'A' && this.getAttribute('href') === '#') e.preventDefault();
+                // Simulation of click feedback
+                this.classList.add('opacity-70');
+                setTimeout(() => this.classList.remove('opacity-70'), 100);
+            });
+        });
+    </script>
+</body></html>

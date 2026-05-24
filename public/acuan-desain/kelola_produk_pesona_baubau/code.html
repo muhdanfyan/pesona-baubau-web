@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kelola Produk - Portal Mitra</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1a5276",
+                    "secondary-container": "#fedb9b",
+                    "surface-container": "#f4ede3",
+                    "secondary-fixed-dim": "#e4c285",
+                    "surface-bright": "#fff8f1",
+                    "on-error-container": "#93000a",
+                    "secondary-fixed": "#ffdea4",
+                    "tertiary-fixed-dim": "#c8c6c3",
+                    "tertiary": "#373736",
+                    "on-surface": "#1e1b16",
+                    "surface-container-high": "#eee7de",
+                    "surface-variant": "#e8e1d8",
+                    "outline": "#72787f",
+                    "on-error": "#ffffff",
+                    "secondary": "#745a27",
+                    "on-primary-fixed": "#001e30",
+                    "on-surface-variant": "#41474e",
+                    "on-secondary-container": "#795f2b",
+                    "tertiary-container": "#4e4e4c",
+                    "primary-fixed": "#cbe6ff",
+                    "on-secondary-fixed": "#261900",
+                    "tertiary-fixed": "#e4e2df",
+                    "surface-tint": "#2f6388",
+                    "on-primary-fixed-variant": "#0e4b6e",
+                    "error": "#ba1a1a",
+                    "on-background": "#1e1b16",
+                    "background": "#fff8f1",
+                    "on-tertiary-fixed": "#1b1c1a",
+                    "inverse-primary": "#9bccf6",
+                    "primary-fixed-dim": "#9bccf6",
+                    "surface": "#fff8f1",
+                    "surface-container-highest": "#e8e1d8",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#faf3e9",
+                    "inverse-on-surface": "#f7f0e6",
+                    "surface-dim": "#e0d9d0",
+                    "on-secondary-fixed-variant": "#5a4312",
+                    "primary": "#003b5a",
+                    "outline-variant": "#c1c7cf",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#94c5ee",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#474745",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-surface": "#33302a",
+                    "on-tertiary-container": "#c1bfbd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "xl": "32px",
+                    "3xl": "64px",
+                    "2xl": "48px",
+                    "sm": "8px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "display-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F5F3F0; /* Level 0 Base Krem */
+        }
+        .tonal-elevation {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .active-pill {
+            background-color: #003b5a;
+            color: #ffffff;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center px-md py-sm w-full sticky top-0 z-50 bg-surface shadow-sm">
+<div class="flex items-center gap-md">
+<button class="p-xs hover:bg-surface-variant/20 transition-colors duration-200 rounded-full">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-headline-sm text-headline-sm-mobile font-bold text-primary">Kelola Produk</h1>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center justify-center bg-primary text-on-primary px-md py-xs rounded-xl gap-xs transition-transform active:scale-95 duration-150">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span class="font-label-md">Tambah</span>
+</button>
+<button class="p-xs hover:bg-surface-variant/20 transition-colors duration-200 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-md py-lg pb-32">
+<!-- Search & Filters -->
+<section class="mb-lg space-y-md">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-[48px] pr-md py-sm bg-surface-container-lowest border border-surface-variant rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all font-body-md" placeholder="Cari nama produk atau SKU..." type="text"/>
+</div>
+<div class="flex gap-sm overflow-x-auto pb-xs no-scrollbar">
+<button class="px-md py-xs rounded-full bg-primary text-on-primary font-label-md whitespace-nowrap">Semua</button>
+<button class="px-md py-xs rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors">Tersedia</button>
+<button class="px-md py-xs rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors">Habis</button>
+<button class="px-md py-xs rounded-full bg-surface-container-high text-on-surface-variant font-label-md whitespace-nowrap hover:bg-surface-variant transition-colors">Arsip</button>
+</div>
+</section>
+<!-- Product List -->
+<section class="space-y-md">
+<!-- Product Card 1 -->
+<div class="bg-surface rounded-xl p-md flex items-center gap-md tonal-elevation border border-surface-variant/50 transition-all hover:border-primary/30 group">
+<img alt="Produk" class="w-20 h-20 rounded-lg object-cover flex-shrink-0" data-alt="A professional studio product shot of a traditional hand-woven Buton fabric with intricate golden patterns. The lighting is soft and cinematic, highlighting the rich textures and deep indigo dyes of the textile. The composition is minimalist against a clean, warm-toned neutral background, reflecting a modern corporate luxury aesthetic with subtle maritime cultural elements." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnlsc95NuEY9SPCr_TxCAxVD6h8ipWEE16kZ23scZFOV4qhh4GehurtaWjKsMBlKRQLEhZFerLRhP2qrCqrtt0C0JsedcWAhcvT3TivNR7WgvITz8vj_hpenelgy-Ia5PioVNvf1-JNis6gT0lsKigaGNyG1L83neRtidwVfS5b-dJiU845VhuM8UT_cHk0fFstdUYoA9kKK54SWl07uvVw8Lta5R1PGwbzBjhSQ53uJUoCot3r30cNMoGuIb89RewFpEZxgOAOiI"/>
+<div class="flex-grow min-w-0">
+<h3 class="font-headline-sm text-headline-sm-mobile truncate text-on-surface mb-xs">Kain Tenun Buton Premium</h3>
+<div class="flex flex-col gap-[2px]">
+<span class="text-primary font-bold text-body-md">Rp 1.250.000</span>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">inventory_2</span>
+<span class="text-label-sm text-on-surface-variant">Stok: 12 unit</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="p-sm text-primary hover:bg-primary-fixed/30 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-sm text-error hover:bg-error-container rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface rounded-xl p-md flex items-center gap-md tonal-elevation border border-surface-variant/50 transition-all hover:border-primary/30 group">
+<img alt="Produk" class="w-20 h-20 rounded-lg object-cover flex-shrink-0" data-alt="Close-up of a high-quality artisanal craft product made from sustainable sea-grass materials found in maritime regions. The item is displayed on a bright white marble surface with morning sunlight casting soft shadows. The overall mood is peaceful and high-end, featuring a professional color palette of ocean blues and sandy beiges to align with a maritime hub identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcBlpSsjhNSgdZgJ27zLDeOSnhtMEFVsvDbj69JLMGVLwZLYp2qsu5Ab60H8bJThYIsEgn-NBFgWp5s7L2QvlR31WAdyooJlw69y4GU6rdtT3Yv2FOxCAjyTqmVF_oGVZ3kf1BSIfTSEvG_wLk8o8r4CXBIt1PJKN310mKM36ZtRbb4e3dHtiiDft8BAxOMK8qCU51ahrIeGXRd-H95cUeJZpD0xg75M_1oGEAFOE3SGjtKDvSi-gorED4VvvE77od1xLyNmyCkDM"/>
+<div class="flex-grow min-w-0">
+<h3 class="font-headline-sm text-headline-sm-mobile truncate text-on-surface mb-xs">Anyaman Pandan Baubau</h3>
+<div class="flex flex-col gap-[2px]">
+<span class="text-primary font-bold text-body-md">Rp 345.000</span>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-error">warning</span>
+<span class="text-label-sm text-error font-bold">Habis</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="p-sm text-primary hover:bg-primary-fixed/30 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-sm text-error hover:bg-error-container rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface rounded-xl p-md flex items-center gap-md tonal-elevation border border-surface-variant/50 transition-all hover:border-primary/30 group">
+<img alt="Produk" class="w-20 h-20 rounded-lg object-cover flex-shrink-0" data-alt="A beautifully packaged local specialty food product from the Buton region, shown in high-detail editorial photography. The packaging features elegant typography and minimalist maritime patterns. It is set against a clean krem background with sharp focus and professional lighting, creating an inviting and trustworthy commercial appeal for a modern digital marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBPlNbZ4Vs0O4X3Qq5bQbgmLGKGEvpdL1PVACYfWSTrKy-orADSQ783OhK-u-9NLJfk5RvstvqdQ6gC9fHyb5PywXVQvBCCSez599BlSxDlHVn7x4btKpRgaqAs5M-qKE56o-lTHtVvQpd70eBHqbQk3QTlV1_UYdaf1FWXR4fAMHxzrZQnwNW9hSDFr2DWDljIVJ03tPFHJdlnAgbtyRfu4iDx4D5Vg18O2Memuudj6m6cKkiSRPGJ8Fh0zoE9xefVODEkI02IY8"/>
+<div class="flex-grow min-w-0">
+<h3 class="font-headline-sm text-headline-sm-mobile truncate text-on-surface mb-xs">Madu Hutan Buton</h3>
+<div class="flex flex-col gap-[2px]">
+<span class="text-primary font-bold text-body-md">Rp 185.000</span>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">inventory_2</span>
+<span class="text-label-sm text-on-surface-variant">Stok: 45 unit</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="p-sm text-primary hover:bg-primary-fixed/30 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-sm text-error hover:bg-error-container rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface rounded-xl p-md flex items-center gap-md tonal-elevation border border-surface-variant/50 transition-all hover:border-primary/30 group">
+<img alt="Produk" class="w-20 h-20 rounded-lg object-cover flex-shrink-0" data-alt="A collection of artisanal wooden sculptures representing maritime heritage, captured with macro photography to show detailed grain and craftsmanship. The lighting is warm and golden, reminiscent of a sunset over a harbor. The style is sophisticated and clean, emphasizing cultural authenticity and premium quality for a professional portal interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5kQJgnfuJcD0TZwak4hQXyMRe4xAEZF6usyeltk1ynH6V7Eud-kTWjqlVkDAvF9np16H-IL_YBLJch5jmjTmgvDuPfFfbz7BsPeQSE1q7kPj1IWsQsCnslE3Sr0c6SrBFmrFvd9NpX9OxwwR3FXcwNOy_0bynOG_sAG8Pp6LDZGPi4LRZV5b2OKpTqsG8_9wFbONjZxOcAFILAco-ylp6xO9CHJsUiy2Vj3XRJ3TEMNFv_mREqLQb2fUJy0OlK-KcGDkgSZvKEmA"/>
+<div class="flex-grow min-w-0">
+<h3 class="font-headline-sm text-headline-sm-mobile truncate text-on-surface mb-xs">Miniatur Kapal Pinisi</h3>
+<div class="flex flex-col gap-[2px]">
+<span class="text-primary font-bold text-body-md">Rp 890.000</span>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px] text-outline">inventory_2</span>
+<span class="text-label-sm text-on-surface-variant">Stok: 5 unit</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<button class="p-sm text-primary hover:bg-primary-fixed/30 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined">edit</span>
+</button>
+<button class="p-sm text-error hover:bg-error-container rounded-lg transition-colors" title="Hapus">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-sm py-xs bg-surface border-t border-surface-variant shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-xl px-4 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-sm text-label-sm">Kelola</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="font-label-sm text-label-sm">Pesanan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1 transition-transform duration-150 active:scale-90" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profil</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for search bar focus
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.02]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.02]');
+        });
+
+        // Filter chip selection effect
+        const chips = document.querySelectorAll('.flex.gap-sm button');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.add('bg-primary', 'text-on-primary');
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>
