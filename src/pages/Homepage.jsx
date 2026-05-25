@@ -1,9 +1,42 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 
+const heroSlides = [
+  {
+    id: 1,
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDC-L8Fb4TkEQ2j6Yqnr2PfDAqktXz1K3R1Ih_d9r4BcV2GFsxAXIxRaNWQGvNEYpj-msiD-EGlZjWc83Gq1P3RUjPPFq91UNMQu48SVnV3bmBLDPpmKOSYB4h9_qQIo83rtFwavLpoCP-CPn5Jq55u677MujQDDffras4_yHExwdhQxVQttNqSkncyuZId7291IPYJ5XG79ma0uw4LUSEuUn_IcHKmE7RVK9nFZSKnQRSjsjNltvMViJ71PZWbF_xvSu7lr9Uvkpo",
+    title: "Benteng Keraton Buton",
+    desc: "Saksi sejarah kejayaan Kesultanan Buton dengan benteng terluas di dunia.",
+    link: "/destinasi/1"
+  },
+  {
+    id: 2,
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAyQYKzX3KuF1dh80_ptXdp2_LTnge1ywhJoicNPgGsWqLX8GfFEO4PSaiw2_XYak3FEQgQErUM511a3hzZ9bT73uapUAx4BXrikAQH8jO_SypbE_5kiqW0Sm1ZvpCJ-JY09jaFFDIXXAFgOn9IWq2bbT9n5kQGbAPV0i-J7ngROlUKrxex97FRuoHN7m_aVvm3gg1krQ2bEud76YRKCdGYhxWZ0nqsIHqVLUTTCc-L1bFMwymqZrePb9QCfa7wgbBMKQShiygCI3Y",
+    title: "Pantai Nirwana",
+    desc: "Pantai dengan gradasi warna air laut yang menakjubkan dan pasir putih halus.",
+    link: "/destinasi/2"
+  },
+  {
+    id: 3,
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxCf_dairb8y2kgmRXwCUPU1qVK8nssSDlI6XpcNC40KbDGZC9m4eMSLrkHSa6RJUYoyknjw1g9CG2U4bp0u8u3IEr0Sj53aueTQ9h16KelstV4Q6X6gYauwU8bwg5bp2hTzqpmaxy5k9qUPoHinQHWfRUhIkiQHsCayZ3VdMU1xy5TVwnMOGL6I9hHPrcExA0rdofvyO68ooL8c19WrSNT9Sb-xfHPgqssiFTUKdwGnjOkTQ8Lyc-x2XwG0AxKe6yUsIcEVbj7EY",
+    title: "Batu Sori",
+    desc: "Ikonik pulau batu karang yang menjulang di tengah laut jernih Baubau.",
+    link: "/destinasi/3"
+  }
+];
+
 export default function Homepage() {
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <div className="min-h-screen pb-24">
@@ -26,28 +59,47 @@ export default function Homepage() {
         {/* Hero Carousel */}
         <section className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden shadow-md group">
           <div className="h-full w-full relative">
-            <div className="absolute inset-0">
-              <img
-                className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDC-L8Fb4TkEQ2j6Yqnr2PfDAqktXz1K3R1Ih_d9r4BcV2GFsxAXIxRaNWQGvNEYpj-msiD-EGlZjWc83Gq1P3RUjPPFq91UNMQu48SVnV3bmBLDPpmKOSYB4h9_qQIo83rtFwavLpoCP-CPn5Jq55u677MujQDDffras4_yHExwdhQxVQttNqSkncyuZId7291IPYJ5XG79ma0uw4LUSEuUn_IcHKmE7RVK9nFZSKnQRSjsjNltvMViJ71PZWbF_xvSu7lr9Uvkpo"
-                alt="Benteng Keraton Buton"
-              />
-              <div className="absolute inset-0 hero-gradient flex flex-col justify-end p-lg">
-                <h2 className="text-white font-headline-lg text-headline-lg mb-2">Benteng Keraton Buton</h2>
-                <p className="text-white/80 font-body-md mb-md max-w-lg">Saksi sejarah kejayaan Kesultanan Buton dengan benteng terluas di dunia.</p>
-                <button
-                  onClick={() => navigate('/destinasi/1')}
-                  className="bg-secondary text-on-secondary px-xl py-md rounded-xl font-label-md w-fit hover:bg-on-secondary-fixed-variant transition-colors shadow-lg active:scale-95"
-                >
-                  Jelajahi Sekarang
-                </button>
+            {heroSlides.map((slide, index) => (
+              <div 
+                key={slide.id}
+                className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                  index === currentSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
+              >
+                <img
+                  className={`w-full h-full object-cover transition-transform duration-[10000ms] ${
+                    index === currentSlide ? 'scale-110' : 'scale-100'
+                  }`}
+                  src={slide.image}
+                  alt={slide.title}
+                />
+                <div className="absolute inset-0 hero-gradient flex flex-col justify-end p-lg">
+                  <h2 className="text-white font-headline-lg text-headline-lg mb-2 drop-shadow-md">
+                    {slide.title}
+                  </h2>
+                  <p className="text-white/90 font-body-md mb-md max-w-lg drop-shadow">
+                    {slide.desc}
+                  </p>
+                  <button
+                    onClick={() => navigate(slide.link)}
+                    className="bg-secondary text-on-secondary px-xl py-md rounded-xl font-label-md w-fit hover:bg-on-secondary-fixed-variant transition-colors shadow-lg active:scale-95"
+                  >
+                    Jelajahi Sekarang
+                  </button>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-            <div className="w-8 h-1 bg-white rounded-full"></div>
-            <div className="w-2 h-1 bg-white/40 rounded-full"></div>
-            <div className="w-2 h-1 bg-white/40 rounded-full"></div>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            {heroSlides.map((_, index) => (
+              <div 
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`h-1 rounded-full cursor-pointer transition-all duration-300 ${
+                  index === currentSlide ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
+                }`}
+              ></div>
+            ))}
           </div>
         </section>
 
