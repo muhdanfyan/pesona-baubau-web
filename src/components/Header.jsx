@@ -24,9 +24,15 @@ export default function Header({ title, showBack = false, onBack, rightAction })
       </div>
       <div className="flex items-center gap-md">
         {rightAction || (
-          <div className="active:scale-95 transition-transform duration-200 cursor-pointer">
-            <div className="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
-              <span className="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+          <div className="flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-1 cursor-pointer bg-surface-container-lowest px-3 py-1.5 rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors shadow-sm active:scale-95">
+              <span className="font-label-sm text-on-surface">IDR 🇮🇩</span>
+              <span className="material-symbols-outlined text-on-surface-variant text-sm">expand_more</span>
+            </div>
+            <div className="active:scale-95 transition-transform duration-200 cursor-pointer">
+              <div className="w-10 h-10 rounded-full bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+                <span className="material-symbols-outlined text-on-surface-variant" data-icon="person">person</span>
+              </div>
             </div>
           </div>
         )}

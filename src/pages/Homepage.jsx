@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import Testimonial from '../components/Testimonial';
 
 const heroSlides = [
   {
@@ -80,12 +81,20 @@ export default function Homepage() {
                   <p className="text-white/90 font-body-md mb-md max-w-lg drop-shadow">
                     {slide.desc}
                   </p>
-                  <button
-                    onClick={() => navigate(slide.link)}
-                    className="bg-secondary text-on-secondary px-xl py-md rounded-xl font-label-md w-fit hover:bg-on-secondary-fixed-variant transition-colors shadow-lg active:scale-95"
-                  >
-                    Jelajahi Sekarang
-                  </button>
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => navigate(slide.link)}
+                      className="bg-secondary text-on-secondary px-xl py-3 rounded-xl font-label-md w-fit hover:bg-on-secondary-fixed-variant transition-colors shadow-lg active:scale-95"
+                    >
+                      Jelajahi Sekarang
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); alert('Tersimpan di Rencana Perjalanan!'); }}
+                      className="bg-white/20 backdrop-blur-md text-white px-4 py-3 rounded-xl font-label-md hover:bg-white/30 transition-colors shadow-lg active:scale-95 flex items-center justify-center border border-white/30"
+                    >
+                      <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 0" }}>bookmark</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -166,8 +175,14 @@ export default function Homepage() {
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyQYKzX3KuF1dh80_ptXdp2_LTnge1ywhJoicNPgGsWqLX8GfFEO4PSaiw2_XYak3FEQgQErUM511a3hzZ9bT73uapUAx4BXrikAQH8jO_SypbE_5kiqW0Sm1ZvpCJ-JY09jaFFDIXXAFgOn9IWq2bbT9n5kQGbAPV0i-J7ngROlUKrxex97FRuoHN7m_aVvm3gg1krQ2bEud76YRKCdGYhxWZ0nqsIHqVLUTTCc-L1bFMwymqZrePb9QCfa7wgbBMKQShiygCI3Y"
                   alt="Pantai Nirwana"
                 />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="bg-primary/90 text-white text-xs font-label-sm px-3 py-1 rounded-full backdrop-blur-sm">Alam</span>
+                <div className="absolute top-4 w-full px-4 flex justify-between items-start pointer-events-none">
+                  <span className="bg-primary/90 text-white text-xs font-label-sm px-3 py-1 rounded-full backdrop-blur-sm pointer-events-auto">Alam</span>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); alert('Tersimpan di Rencana Perjalanan!'); }}
+                    className="w-8 h-8 rounded-full bg-white/70 backdrop-blur-md flex items-center justify-center hover:bg-white transition-colors shadow-sm pointer-events-auto"
+                  >
+                    <span className="material-symbols-outlined text-on-surface text-[18px]">bookmark_add</span>
+                  </button>
                 </div>
                 <div className="absolute bottom-4 right-4 bg-white/90 px-2 py-1 rounded-lg flex items-center gap-1 shadow-sm">
                   <span className="material-symbols-outlined text-orange-400 text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
@@ -298,6 +313,66 @@ export default function Homepage() {
             </div>
           </section>
         </div>
+
+        {/* Features / Fitur Utama */}
+        <section className="py-xl border-t border-outline-variant/30 mt-xl">
+          <div className="text-center mb-xl">
+            <h3 className="font-headline-md text-headline-md text-primary mb-2">Eksplorasi Tanpa Batas</h3>
+            <p className="text-on-surface-variant font-body-sm max-w-lg mx-auto">Semua yang Anda butuhkan untuk pengalaman wisata terbaik di Baubau.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-lg">
+            <div className="text-center p-md bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/50 hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-primary-container text-primary rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <span className="material-symbols-outlined text-3xl">map</span>
+              </div>
+              <h4 className="font-headline-sm mb-2 text-on-surface">Rencana Perjalanan</h4>
+              <p className="text-on-surface-variant font-body-sm">Simpan destinasi favorit dan susun <i>itinerary</i> Anda dengan mudah di satu tempat.</p>
+            </div>
+            <div className="text-center p-md bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/50 hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-secondary-container text-secondary rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <span className="material-symbols-outlined text-3xl">storefront</span>
+              </div>
+              <h4 className="font-headline-sm mb-2 text-on-surface">Dukung UMKM Lokal</h4>
+              <p className="text-on-surface-variant font-body-sm">Temukan produk otentik, kuliner khas, dan kerajinan tangan langsung dari pembuatnya.</p>
+            </div>
+            <div className="text-center p-md bg-surface-container-lowest rounded-2xl shadow-sm border border-outline-variant/50 hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-tertiary-container text-tertiary rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <span className="material-symbols-outlined text-3xl">wifi_off</span>
+              </div>
+              <h4 className="font-headline-sm mb-2 text-on-surface">Akses Offline</h4>
+              <p className="text-on-surface-variant font-body-sm">Akses peta dan rute destinasi favorit Anda meski tanpa koneksi internet yang stabil.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <Testimonial />
+
+        {/* Featured In */}
+        <section className="py-xl border-t border-outline-variant/30 mt-md">
+          <div className="text-center mb-lg">
+            <p className="text-on-surface-variant font-label-md uppercase tracking-widest">DIDUKUNG OLEH</p>
+          </div>
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-300">
+            <h4 className="font-headline-sm font-bold text-on-surface-variant grayscale">WONDERFUL INDONESIA</h4>
+            <h4 className="font-headline-sm font-bold text-on-surface-variant grayscale">PEMKOT BAUBAU</h4>
+            <h4 className="font-headline-sm font-bold text-on-surface-variant grayscale">KEMENPAREKRAF</h4>
+            <h4 className="font-headline-sm font-bold text-on-surface-variant grayscale">DISPAR SULTRA</h4>
+          </div>
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="bg-primary text-on-primary rounded-3xl p-xl my-xl text-center shadow-xl relative overflow-hidden">
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <h2 className="font-headline-lg text-headline-lg mb-4 relative z-10 text-white">Mulai Perjalanan Anda</h2>
+          <p className="font-body-md text-white/90 mb-8 max-w-lg mx-auto relative z-10">Daftar gratis sekarang dan buat rencana wisata pertama Anda di Kota Baubau, kota seribu benteng.</p>
+          <button className="bg-secondary text-on-secondary px-8 py-4 rounded-xl font-label-md shadow-lg hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-colors active:scale-95 relative z-10 text-[16px]">
+            Daftar Sekarang — Gratis
+          </button>
+        </section>
+
       </main>
       <BottomNav />
     </div>

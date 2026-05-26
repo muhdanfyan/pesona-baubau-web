@@ -8,6 +8,7 @@ import Peta from './pages/Peta';
 import KalenderEvent from './pages/KalenderEvent';
 import TripPlanner from './pages/TripPlanner';
 import VirtualTour from './pages/VirtualTour';
+import Profil from './pages/Profil';
 
 function AppContent() {
   const location = useLocation();
@@ -23,6 +24,7 @@ function AppContent() {
       <Route path="/event" element={<KalenderEvent />} />
       <Route path="/trip-planner" element={<TripPlanner />} />
       <Route path="/virtual-tour" element={<VirtualTour />} />
+      <Route path="/profil" element={<Profil />} />
     </Routes>
   );
 }

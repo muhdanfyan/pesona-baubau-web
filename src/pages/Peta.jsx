@@ -1,11 +1,103 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import L from 'leaflet';
+
+const poiData = [
+  {
+    id: 1,
+    name: "Benteng Keraton Buton",
+    category: "Sejarah",
+    coords: [-5.47472, 122.60167],
+    rating: 4.9,
+    desc: "Benteng terluas di dunia dengan pemandangan teluk yang memukau.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB6XsimgTziDiZRAnuEuKGWfuID6cpFdsRPtK3xoQhZ5Oh1z8DDC6ML_zaaifaotiYbmBHFyucoPFtm_ewpKTfo-yrbvoQs2KK10fuKVh5kYMX0FmcZ0UOA51YoACW_ibBpk3CatX-2U3cTNPEmWn3eF9ISovrXm4IxbAx0_UlpS_sBwRRvdDrsI_9dpVozl28Ouvhzt27vlgum6iseMbPadoBTxLXcSJZq_6NDrhkrN8gHku6JlzicS1G3syLUfSQm5rftAW2kQkc",
+    link: "/destinasi/1"
+  },
+  {
+    id: 2,
+    name: "Pantai Nirwana",
+    category: "Pantai",
+    coords: [-5.522565, 122.56655],
+    rating: 4.8,
+    desc: "Pantai pasir putih dengan pemandangan laut yang menenangkan.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAyQYKzX3KuF1dh80_ptXdp2_LTnge1ywhJoicNPgGsWqLX8GfFEO4PSaiw2_XYak3FEQgQErUM511a3hzZ9bT73uapUAx4BXrikAQH8jO_SypbE_5kiqW0Sm1ZvpCJ-JY09jaFFDIXXAFgOn9IWq2bbT9n5kQGbAPV0i-J7ngROlUKrxex97FRuoHN7m_aVvm3gg1krQ2bEud76YRKCdGYhxWZ0nqsIHqVLUTTCc-L1bFMwymqZrePb9QCfa7wgbBMKQShiygCI3Y",
+    link: "/destinasi/2"
+  },
+  {
+    id: 3,
+    name: "Batu Sori",
+    category: "Alam",
+    coords: [-5.46222, 122.60583],
+    rating: 4.7,
+    desc: "Gugusan batu karang eksotis yang memukau di atas laut jernih.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxCf_dairb8y2kgmRXwCUPU1qVK8nssSDlI6XpcNC40KbDGZC9m4eMSLrkHSa6RJUYoyknjw1g9CG2U4bp0u8u3IEr0Sj53aueTQ9h16KelstV4Q6X6gYauwU8bwg5bp2hTzqpmaxy5k9qUPoHinQHWfRUhIkiQHsCayZ3VdMU1xy5TVwnMOGL6I9hHPrcExA0rdofvyO68ooL8c19WrSNT9Sb-xfHPgqssiFTUKdwGnjOkTQ8Lyc-x2XwG0AxKe6yUsIcEVbj7EY",
+    link: "/destinasi/3"
+  },
+  {
+    id: 4,
+    name: "Istana Malige",
+    category: "Sejarah",
+    coords: [-5.46743, 122.59253],
+    rating: 4.9,
+    desc: "Rumah adat Kesultanan Buton dengan konstruksi kayu tanpa paku.",
+    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0aNQ2OTt9yjUqW5MEbZTVgUrnUXlxkgpkdLrFNEKls_gwRR7DD_o0bJZQ4dQZpTIGL6GYbifbKviisNt4mTmNfRNDcJgASsK79Mzzz5TtNuoxXOZChICvhzvegK0_GPD-7aSgAhulE_Rdy9h1RAqIh4P_ei1qTJk9WdTiEJ6GH0F2PMGTv1mkQe4OP1N8QZJgbF5sIZfrU5DuY7DkL3ZjM79Du_NWXZf3mrjgkV4roh5Ea35IgV0tA6DiKok737Tua7Myiycyay0",
+    link: "/destinasi/4"
+  },
+  {
+    id: 5,
+    name: "Masjid Agung Keraton Buton",
+    category: "Religi",
+    coords: [-5.47350, 122.60200],
+    rating: 4.8,
+    desc: "Masjid bersejarah pusat penyebaran Islam di Kesultanan Buton.",
+    image: "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&q=80&w=800",
+    link: "/destinasi/5"
+  },
+];
+
+const categories = [
+  { id: 'all', icon: 'layers', label: 'Semua' },
+  { id: 'Sejarah', icon: 'history_edu', label: 'Sejarah' },
+  { id: 'Pantai', icon: 'beach_access', label: 'Pantai' },
+  { id: 'Alam', icon: 'forest', label: 'Alam' },
+  { id: 'Religi', icon: 'temple_hindu', label: 'Religi' },
+];
+
+const createCustomIcon = (category) => {
+  let color = 'bg-primary';
+  let icon = 'location_on';
+
+  if (category === 'Sejarah') { color = 'bg-primary'; icon = 'history_edu'; }
+  else if (category === 'Pantai') { color = 'bg-secondary'; icon = 'beach_access'; }
+  else if (category === 'Alam') { color = 'bg-tertiary'; icon = 'forest'; }
+  else if (category === 'Religi') { color = 'bg-on-secondary-container'; icon = 'temple_hindu'; }
+
+  return L.divIcon({
+    className: 'custom-leaflet-marker',
+    html: `<div class="relative flex items-center justify-center w-10 h-10 ${color} text-white rounded-full border-2 border-white shadow-lg hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-[20px]">${icon}</span>
+           </div>`,
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40],
+  });
+};
 
 export default function Peta() {
+  const navigate = useNavigate();
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const filteredData = activeFilter === 'all' 
+    ? poiData 
+    : poiData.filter(poi => poi.category === activeFilter);
+
   return (
     <div className="overflow-hidden h-screen flex flex-col bg-background">
       <Header
-        title="Pesona Baubau"
+        title="Peta Interaktif"
         rightAction={
           <div className="flex items-center gap-md">
             <button className="material-symbols-outlined p-xs rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">search</button>
@@ -16,28 +108,16 @@ export default function Peta() {
         }
       />
       <main className="flex-grow relative overflow-hidden">
-        {/* Map Background */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(rgba(245, 243, 240, 0.4), rgba(245, 243, 240, 0.4)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuCgjBoLj5K3GXxJ4Bxxw8S8m_emeuhpUPR9JgqUBPR07eVEL1Brw70Ys8unWRksgbPEQ8IyZSjEARoSfoSkPGK4eGI9RUhYhQZuihQzBhhIVyNsIRlYR93YnqPY63RZ_O2ACKXA8izQPWHmieBgRMJLkIS4U3JwfaXPtDSJ-xSsso5Aq8WMB2X5SEG7wszMWUxlJAErullfhG6jY4u6Cjh_olqUQNulusNYwe5SYPtGgli0ruPlGNEnliFBO588X5l0j9EvwwVdIbg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}></div>
-
+        
         {/* Layer Filters */}
-        <div className="absolute top-md left-0 right-0 z-40 px-md">
+        <div className="absolute top-md left-0 right-0 z-[1000] px-md">
           <div className="flex gap-sm overflow-x-auto hide-scrollbar pb-xs">
-            {[
-              { icon: 'layers', label: 'Semua', active: true },
-              { icon: 'history_edu', label: 'Sejarah' },
-              { icon: 'beach_access', label: 'Pantai' },
-              { icon: 'forest', label: 'Alam' },
-              { icon: 'temple_hindu', label: 'Religi' },
-              { icon: 'wifi', label: 'Wi-Fi Gratis' },
-            ].map((item, i) => (
+            {categories.map((item, i) => (
               <button
                 key={i}
-                className={`flex-shrink-0 px-md py-sm rounded-full font-label-md flex items-center gap-xs shadow-sm transition-transform active:scale-95 ${
-                  item.active
+                onClick={() => setActiveFilter(item.id)}
+                className={`flex-shrink-0 px-md py-sm rounded-full font-label-md flex items-center gap-xs shadow-md transition-transform active:scale-95 ${
+                  activeFilter === item.id
                     ? 'bg-primary text-on-primary'
                     : 'bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:border-primary'
                 }`}
@@ -49,90 +129,68 @@ export default function Peta() {
           </div>
         </div>
 
-        {/* Markers */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* Cluster */}
-          <div className="absolute top-[30%] left-[40%] pointer-events-auto cursor-pointer group">
-            <div className="relative flex items-center justify-center w-12 h-12 bg-primary text-on-primary rounded-full border-4 border-surface font-bold text-label-md shadow-lg transition-transform group-hover:scale-110">
-              12
-            </div>
-          </div>
-
-          {/* Single Marker with Popup */}
-          <div className="absolute top-[55%] left-[60%] pointer-events-auto">
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[240px] bg-surface rounded-xl shadow-xl border border-outline-variant overflow-hidden">
-              <div className="relative h-28">
-                <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6XsimgTziDiZRAnuEuKGWfuID6cpFdsRPtK3xoQhZ5Oh1z8DDC6ML_zaaifaotiYbmBHFyucoPFtm_ewpKTfo-yrbvoQs2KK10fuKVh5kYMX0FmcZ0UOA51YoACW_ibBpk3CatX-2U3cTNPEmWn3eF9ISovrXm4IxbAx0_UlpS_sBwRRvdDrsI_9dpVozl28Ouvhzt27vlgum6iseMbPadoBTxLXcSJZq_6NDrhkrN8gHku6JlzicS1G3syLUfSQm5rftAW2kQkc" alt="Benteng Keraton Buton" />
-                <button className="absolute top-2 right-2 w-6 h-6 bg-surface/50 backdrop-blur rounded-full flex items-center justify-center text-on-surface">
-                  <span className="material-symbols-outlined text-sm">close</span>
-                </button>
-              </div>
-              <div className="p-md">
-                <div className="flex justify-between items-start mb-xs">
-                  <h3 className="font-headline-sm text-label-md text-primary">Benteng Keraton Buton</h3>
-                  <div className="flex items-center gap-xs">
-                    <span className="material-symbols-outlined text-secondary text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                    <span className="font-label-sm">4.9</span>
+        {/* Interactive Leaflet Map */}
+        <MapContainer 
+          center={[-5.47000, 122.59500]} 
+          zoom={13} 
+          className="w-full h-full z-0"
+          zoomControl={false}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          
+          {filteredData.map(poi => (
+            <Marker 
+              key={poi.id} 
+              position={poi.coords} 
+              icon={createCustomIcon(poi.category)}
+            >
+              <Popup className="custom-popup" closeButton={false}>
+                <div className="w-[240px] rounded-xl overflow-hidden shadow-sm bg-surface">
+                  <div className="relative h-32">
+                    <img className="w-full h-full object-cover" src={poi.image} alt={poi.name} />
+                  </div>
+                  <div className="p-3 bg-surface">
+                    <div className="flex justify-between items-start mb-1">
+                      <h3 className="font-headline-sm text-[16px] text-primary leading-tight m-0">{poi.name}</h3>
+                      <div className="flex items-center gap-1 bg-surface-container-low px-1.5 py-0.5 rounded">
+                        <span className="material-symbols-outlined text-orange-400 text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                        <span className="font-label-sm text-[11px]">{poi.rating}</span>
+                      </div>
+                    </div>
+                    <p className="text-on-surface-variant text-[12px] mb-3 leading-snug">{poi.desc}</p>
+                    <button 
+                      onClick={() => navigate(poi.link)}
+                      className="w-full py-2 rounded-lg bg-primary-container text-on-primary-container font-label-md flex items-center justify-center gap-1 hover:bg-primary hover:text-on-primary transition-all border-none cursor-pointer"
+                    >
+                      Lihat Detail
+                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </button>
                   </div>
                 </div>
-                <p className="text-on-surface-variant text-[11px] mb-md leading-relaxed">Benteng terluas di dunia dengan pemandangan teluk yang memukau.</p>
-                <button className="w-full py-sm rounded-lg bg-primary-container text-on-primary-container font-label-md flex items-center justify-center gap-sm hover:bg-primary hover:text-on-primary transition-all">
-                  Lihat Detail
-                  <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                </button>
-              </div>
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-surface rotate-45 border-r border-b border-outline-variant"></div>
-            </div>
-            <div className="relative flex items-center justify-center w-8 h-8">
-              <span className="material-symbols-outlined text-primary text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
-            </div>
-          </div>
-
-          {/* User Location */}
-          <div className="absolute top-[70%] left-[30%] pointer-events-auto">
-            <div className="relative flex items-center justify-center w-6 h-6">
-              <div className="absolute w-full h-full rounded-full" style={{
-                backgroundColor: '#003b5a',
-                animation: 'pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite',
-              }}></div>
-              <div className="relative w-4 h-4 bg-primary border-2 border-white rounded-full shadow-md"></div>
-            </div>
-          </div>
-        </div>
-
-        {/* Map Controls */}
-        <div className="absolute right-md bottom-[100px] z-40 flex flex-col gap-sm">
-          <button className="w-12 h-12 bg-surface text-primary rounded-xl shadow-md border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-all active:scale-95">
-            <span className="material-symbols-outlined">add</span>
-          </button>
-          <button className="w-12 h-12 bg-surface text-primary rounded-xl shadow-md border border-outline-variant flex items-center justify-center hover:bg-surface-container-low transition-all active:scale-95">
-            <span className="material-symbols-outlined">remove</span>
-          </button>
-          <button className="w-12 h-12 bg-primary text-on-primary rounded-xl shadow-lg flex items-center justify-center hover:brightness-110 transition-all active:scale-95 mt-md">
-            <span className="material-symbols-outlined">my_location</span>
-          </button>
-        </div>
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
 
         {/* POI Legend */}
-        <div className="absolute left-md bottom-[100px] z-40">
-          <div className="glass-panel p-md rounded-2xl shadow-xl border border-outline-variant max-w-[180px]">
+        <div className="absolute left-md bottom-[100px] z-[1000] pointer-events-none hidden md:block">
+          <div className="bg-surface/90 backdrop-blur-md p-md rounded-2xl shadow-lg border border-outline-variant/50 max-w-[180px] pointer-events-auto">
             <h4 className="font-label-md text-primary mb-sm flex items-center gap-xs">
               <span className="material-symbols-outlined text-[18px]">legend_toggle</span>
-              Legenda POI
+              Kategori
             </h4>
-            <div className="space-y-xs">
-              {[
-                { icon: 'atm', label: 'ATM & Bank' },
-                { icon: 'restaurant', label: 'Makan & Minum' },
-                { icon: 'hotel', label: 'Hotel & Penginapan' },
-                { icon: 'local_gas_station', label: 'SPBU' },
-                { icon: 'local_parking', label: 'Area Parkir' },
-                { icon: 'wc', label: 'Toilet Publik' },
-                { icon: 'wifi_tethering', label: 'Zona Wi-Fi' },
-              ].map((poi, i) => (
-                <div key={i} className="flex items-center gap-sm">
-                  <span className="material-symbols-outlined text-primary text-[18px]">{poi.icon}</span>
-                  <span className="text-[12px] font-body-sm text-on-surface-variant">{poi.label}</span>
+            <div className="space-y-2">
+              {categories.slice(1).map((cat, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  <div className={`w-3 h-3 rounded-full ${
+                    cat.id === 'Sejarah' ? 'bg-primary' : 
+                    cat.id === 'Pantai' ? 'bg-secondary' : 
+                    cat.id === 'Alam' ? 'bg-tertiary' : 'bg-on-secondary-container'
+                  }`}></div>
+                  <span className="text-[12px] font-body-sm text-on-surface-variant">{cat.label}</span>
                 </div>
               ))}
             </div>
@@ -140,6 +198,38 @@ export default function Peta() {
         </div>
       </main>
       <BottomNav />
+      
+      {/* Global styles for leaflet popup overrides to fit our UI */}
+      <style>{`
+        .custom-popup .leaflet-popup-content-wrapper {
+          padding: 0;
+          overflow: hidden;
+          border-radius: 12px;
+          border: 1px solid rgba(193, 199, 207, 0.5); /* outline-variant */
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          background-color: var(--color-surface, #fff8f1);
+        }
+        .custom-popup .leaflet-popup-content {
+          margin: 0;
+          width: 240px !important;
+        }
+        .custom-popup .leaflet-popup-tip-container {
+          margin-top: -1px;
+        }
+        .custom-popup .leaflet-popup-tip {
+          background-color: var(--color-surface, #fff8f1);
+          border: 1px solid rgba(193, 199, 207, 0.5);
+          border-top: none;
+          border-left: none;
+        }
+        .custom-leaflet-marker {
+          background: transparent;
+          border: none;
+        }
+        .leaflet-container {
+          background: #f4ede3; /* surface-container */
+        }
+      `}</style>
     </div>
   );
 }
