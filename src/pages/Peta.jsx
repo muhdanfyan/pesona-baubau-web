@@ -1,233 +1,176 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
-import BottomNav from '../components/BottomNav';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import L from 'leaflet';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const poiData = [
   {
     id: 1,
     name: "Benteng Keraton Buton",
-    category: "Sejarah",
+    category: "Culture",
     coords: [-5.47472, 122.60167],
     rating: 4.9,
     desc: "Benteng terluas di dunia dengan pemandangan teluk yang memukau.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB6XsimgTziDiZRAnuEuKGWfuID6cpFdsRPtK3xoQhZ5Oh1z8DDC6ML_zaaifaotiYbmBHFyucoPFtm_ewpKTfo-yrbvoQs2KK10fuKVh5kYMX0FmcZ0UOA51YoACW_ibBpk3CatX-2U3cTNPEmWn3eF9ISovrXm4IxbAx0_UlpS_sBwRRvdDrsI_9dpVozl28Ouvhzt27vlgum6iseMbPadoBTxLXcSJZq_6NDrhkrN8gHku6JlzicS1G3syLUfSQm5rftAW2kQkc",
-    link: "/destinasi/1"
-  },
-  {
-    id: 2,
-    name: "Pantai Nirwana",
-    category: "Pantai",
-    coords: [-5.522565, 122.56655],
-    rating: 4.8,
-    desc: "Pantai pasir putih dengan pemandangan laut yang menenangkan.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAyQYKzX3KuF1dh80_ptXdp2_LTnge1ywhJoicNPgGsWqLX8GfFEO4PSaiw2_XYak3FEQgQErUM511a3hzZ9bT73uapUAx4BXrikAQH8jO_SypbE_5kiqW0Sm1ZvpCJ-JY09jaFFDIXXAFgOn9IWq2bbT9n5kQGbAPV0i-J7ngROlUKrxex97FRuoHN7m_aVvm3gg1krQ2bEud76YRKCdGYhxWZ0nqsIHqVLUTTCc-L1bFMwymqZrePb9QCfa7wgbBMKQShiygCI3Y",
-    link: "/destinasi/2"
-  },
-  {
-    id: 3,
-    name: "Batu Sori",
-    category: "Alam",
-    coords: [-5.46222, 122.60583],
-    rating: 4.7,
-    desc: "Gugusan batu karang eksotis yang memukau di atas laut jernih.",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxCf_dairb8y2kgmRXwCUPU1qVK8nssSDlI6XpcNC40KbDGZC9m4eMSLrkHSa6RJUYoyknjw1g9CG2U4bp0u8u3IEr0Sj53aueTQ9h16KelstV4Q6X6gYauwU8bwg5bp2hTzqpmaxy5k9qUPoHinQHWfRUhIkiQHsCayZ3VdMU1xy5TVwnMOGL6I9hHPrcExA0rdofvyO68ooL8c19WrSNT9Sb-xfHPgqssiFTUKdwGnjOkTQ8Lyc-x2XwG0AxKe6yUsIcEVbj7EY",
-    link: "/destinasi/3"
   },
   {
     id: 4,
     name: "Istana Malige",
-    category: "Sejarah",
+    category: "Culture",
     coords: [-5.46743, 122.59253],
     rating: 4.9,
     desc: "Rumah adat Kesultanan Buton dengan konstruksi kayu tanpa paku.",
     image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0aNQ2OTt9yjUqW5MEbZTVgUrnUXlxkgpkdLrFNEKls_gwRR7DD_o0bJZQ4dQZpTIGL6GYbifbKviisNt4mTmNfRNDcJgASsK79Mzzz5TtNuoxXOZChICvhzvegK0_GPD-7aSgAhulE_Rdy9h1RAqIh4P_ei1qTJk9WdTiEJ6GH0F2PMGTv1mkQe4OP1N8QZJgbF5sIZfrU5DuY7DkL3ZjM79Du_NWXZf3mrjgkV4roh5Ea35IgV0tA6DiKok737Tua7Myiycyay0",
-    link: "/destinasi/4"
-  },
-  {
-    id: 5,
-    name: "Masjid Agung Keraton Buton",
-    category: "Religi",
-    coords: [-5.47350, 122.60200],
-    rating: 4.8,
-    desc: "Masjid bersejarah pusat penyebaran Islam di Kesultanan Buton.",
-    image: "https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&q=80&w=800",
-    link: "/destinasi/5"
-  },
+  }
 ];
 
-const categories = [
-  { id: 'all', icon: 'layers', label: 'Semua' },
-  { id: 'Sejarah', icon: 'history_edu', label: 'Sejarah' },
-  { id: 'Pantai', icon: 'beach_access', label: 'Pantai' },
-  { id: 'Alam', icon: 'forest', label: 'Alam' },
-  { id: 'Religi', icon: 'temple_hindu', label: 'Religi' },
+// Dummy route between Istana Malige and Benteng Keraton
+const routeCoords = [
+  [-5.46743, 122.59253],
+  [-5.46900, 122.59500],
+  [-5.47200, 122.59800],
+  [-5.47472, 122.60167],
 ];
 
-const createCustomIcon = (category) => {
-  let color = 'bg-primary';
-  let icon = 'location_on';
+const createCustomIcon = (type, img) => {
+  if (type === 'user') {
+    return L.divIcon({
+      className: 'custom-leaflet-marker',
+      html: `<div class="w-12 h-12 rounded-full border-[3px] border-blue-500 bg-white overflow-hidden shadow-lg hover:scale-110 transition-transform">
+              <img src="${img}" class="w-full h-full object-cover" />
+             </div>`,
+      iconSize: [48, 48],
+      iconAnchor: [24, 48],
+    });
+  }
 
-  if (category === 'Sejarah') { color = 'bg-primary'; icon = 'history_edu'; }
-  else if (category === 'Pantai') { color = 'bg-secondary'; icon = 'beach_access'; }
-  else if (category === 'Alam') { color = 'bg-tertiary'; icon = 'forest'; }
-  else if (category === 'Religi') { color = 'bg-on-secondary-container'; icon = 'temple_hindu'; }
-
+  // Gas station / standard pin
   return L.divIcon({
     className: 'custom-leaflet-marker',
-    html: `<div class="relative flex items-center justify-center w-10 h-10 ${color} text-white rounded-full border-2 border-white shadow-lg hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-[20px]">${icon}</span>
+    html: `<div class="relative flex items-center justify-center w-10 h-10 bg-white text-orange-500 rounded-full border-2 border-orange-100 shadow-[0_8px_16px_rgba(0,0,0,0.15)] hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_gas_station</span>
+            <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45 border-r-2 border-b-2 border-orange-100"></div>
            </div>`,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
-    popupAnchor: [0, -40],
+    iconSize: [40, 48],
+    iconAnchor: [20, 48],
   });
 };
 
 export default function Peta() {
   const navigate = useNavigate();
-  const [activeFilter, setActiveFilter] = useState('all');
-
-  const filteredData = activeFilter === 'all' 
-    ? poiData 
-    : poiData.filter(poi => poi.category === activeFilter);
+  const { t } = useLanguage();
 
   return (
-    <div className="overflow-hidden h-screen flex flex-col bg-background">
-      <Header
-        title="Peta Interaktif"
-        rightAction={
-          <div className="flex items-center gap-md">
-            <button className="material-symbols-outlined p-xs rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">search</button>
-            <div className="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-label-sm">
-              JD
-            </div>
-          </div>
-        }
-      />
-      <main className="flex-grow relative overflow-hidden">
-        
-        {/* Layer Filters */}
-        <div className="absolute top-md left-0 right-0 z-[1000] px-md">
-          <div className="flex gap-sm overflow-x-auto hide-scrollbar pb-xs">
-            {categories.map((item, i) => (
-              <button
-                key={i}
-                onClick={() => setActiveFilter(item.id)}
-                className={`flex-shrink-0 px-md py-sm rounded-full font-label-md flex items-center gap-xs shadow-md transition-transform active:scale-95 ${
-                  activeFilter === item.id
-                    ? 'bg-primary text-on-primary'
-                    : 'bg-surface-container-lowest text-on-surface-variant border border-outline-variant hover:border-primary'
-                }`}
-              >
-                <span className="material-symbols-outlined text-[18px]">{item.icon}</span>
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
+    <div className="overflow-hidden h-screen flex flex-col bg-blue-50 relative font-sans">
+      
+      {/* Floating Top Bar */}
+      <div className="absolute top-0 left-0 right-0 z-[1000] p-6 flex justify-between items-start pointer-events-none">
+        <button 
+          onClick={() => navigate(-1)}
+          className="w-11 h-11 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center border border-gray-100 shadow-sm hover:bg-white transition-colors pointer-events-auto"
+        >
+          <span className="material-symbols-outlined text-gray-700 text-[20px]">arrow_back_ios_new</span>
+        </button>
+        <button className="w-11 h-11 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center border border-gray-100 shadow-sm hover:bg-white transition-colors pointer-events-auto">
+          <span className="material-symbols-outlined text-gray-700 text-[20px]">info</span>
+        </button>
+      </div>
 
-        {/* Interactive Leaflet Map */}
+      {/* Map Area */}
+      <div className="flex-grow h-full relative z-0">
         <MapContainer 
-          center={[-5.47000, 122.59500]} 
-          zoom={13} 
+          center={[-5.47100, 122.59700]} 
+          zoom={15} 
           className="w-full h-full z-0"
           zoomControl={false}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+            attribution='&copy; <a href="https://carto.com/">CARTO</a>'
           />
           
-          {filteredData.map(poi => (
-            <Marker 
-              key={poi.id} 
-              position={poi.coords} 
-              icon={createCustomIcon(poi.category)}
-            >
-              <Popup className="custom-popup" closeButton={false}>
-                <div className="w-[240px] rounded-xl overflow-hidden shadow-sm bg-surface">
-                  <div className="relative h-32">
-                    <img className="w-full h-full object-cover" src={poi.image} alt={poi.name} />
-                  </div>
-                  <div className="p-3 bg-surface">
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="font-headline-sm text-[16px] text-primary leading-tight m-0">{poi.name}</h3>
-                      <div className="flex items-center gap-1 bg-surface-container-low px-1.5 py-0.5 rounded">
-                        <span className="material-symbols-outlined text-orange-400 text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                        <span className="font-label-sm text-[11px]">{poi.rating}</span>
-                      </div>
-                    </div>
-                    <p className="text-on-surface-variant text-[12px] mb-3 leading-snug">{poi.desc}</p>
-                    <button 
-                      onClick={() => navigate(poi.link)}
-                      className="w-full py-2 rounded-lg bg-primary-container text-on-primary-container font-label-md flex items-center justify-center gap-1 hover:bg-primary hover:text-on-primary transition-all border-none cursor-pointer"
-                    >
-                      Lihat Detail
-                      <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    </button>
-                  </div>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
-        </MapContainer>
+          <Polyline positions={routeCoords} color="#3b82f6" weight={6} opacity={0.8} />
 
-        {/* POI Legend */}
-        <div className="absolute left-md bottom-[100px] z-[1000] pointer-events-none hidden md:block">
-          <div className="bg-surface/90 backdrop-blur-md p-md rounded-2xl shadow-lg border border-outline-variant/50 max-w-[180px] pointer-events-auto">
-            <h4 className="font-label-md text-primary mb-sm flex items-center gap-xs">
-              <span className="material-symbols-outlined text-[18px]">legend_toggle</span>
-              Kategori
-            </h4>
-            <div className="space-y-2">
-              {categories.slice(1).map((cat, i) => (
-                <div key={i} className="flex items-center gap-2">
-                  <div className={`w-3 h-3 rounded-full ${
-                    cat.id === 'Sejarah' ? 'bg-primary' : 
-                    cat.id === 'Pantai' ? 'bg-secondary' : 
-                    cat.id === 'Alam' ? 'bg-tertiary' : 'bg-on-secondary-container'
-                  }`}></div>
-                  <span className="text-[12px] font-body-sm text-on-surface-variant">{cat.label}</span>
-                </div>
-              ))}
-            </div>
+          {/* Start Point (User) */}
+          <Marker position={routeCoords[0]} icon={createCustomIcon('user', 'https://i.pravatar.cc/150?img=11')} />
+          
+          {/* End Point (Destination) */}
+          <Marker position={routeCoords[3]} icon={createCustomIcon('user', 'https://i.pravatar.cc/150?img=32')} />
+          
+          {/* POI Marker (Gas Station/Other) */}
+          <Marker position={[-5.47100, 122.59400]} icon={createCustomIcon('poi')} />
+          
+        </MapContainer>
+        
+        {/* Floating map controls (right side) */}
+        <div className="absolute bottom-[45vh] right-6 z-[1000] flex flex-col gap-2">
+          <button className="w-11 h-11 bg-white rounded-xl shadow-lg flex items-center justify-center text-gray-600 font-bold text-xl hover:bg-gray-50 active:scale-95 transition-all">+</button>
+          <button className="w-11 h-11 bg-white rounded-xl shadow-lg flex items-center justify-center text-gray-600 font-bold text-xl hover:bg-gray-50 active:scale-95 transition-all">-</button>
+        </div>
+      </div>
+
+      {/* Bottom Sheet */}
+      <div className="absolute bottom-0 left-0 right-0 h-[42vh] bg-white rounded-t-[32px] shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-[1000] px-6 pt-5 pb-8 flex flex-col">
+        {/* Drag handle */}
+        <div className="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-6"></div>
+        
+        <div className="flex justify-between items-center mb-6">
+          <div className="flex items-center gap-2">
+            <span className="material-symbols-outlined text-gray-900" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
+            <h3 className="font-bold text-gray-900 text-lg">{t('map.currentLocation')}</h3>
+          </div>
+          <div className="flex items-center gap-2 text-blue-600 font-bold text-sm">
+            <span>47 min</span>
+            <span className="text-gray-400 font-medium text-xs">(8.04 km)</span>
           </div>
         </div>
-      </main>
-      <BottomNav />
-      
-      {/* Global styles for leaflet popup overrides to fit our UI */}
+
+        {/* Scrollable list */}
+        <div className="flex-1 overflow-y-auto hide-scrollbar space-y-4 pr-2">
+          
+          {/* List Item 1 */}
+          <div className="flex bg-white border border-gray-100 rounded-2xl p-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] gap-4 hover:border-blue-100 transition-colors">
+            <img 
+              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=200" 
+              alt="Hotel" 
+              className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
+            />
+            <div className="flex-1 flex flex-col justify-center">
+              <h4 className="font-bold text-gray-900 text-[15px] mb-0.5">{t('map.hotels')}</h4>
+              <p className="text-gray-400 text-xs mb-2">{t('map.bestHotels')}</p>
+              <button className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-600/30 active:scale-95 transition-transform">
+                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>directions</span>
+              </button>
+            </div>
+          </div>
+
+          {/* List Item 2 */}
+          <div className="flex bg-white border border-gray-100 rounded-2xl p-3 shadow-[0_2px_12px_rgba(0,0,0,0.04)] gap-4 hover:border-blue-100 transition-colors">
+            <img 
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6XsimgTziDiZRAnuEuKGWfuID6cpFdsRPtK3xoQhZ5Oh1z8DDC6ML_zaaifaotiYbmBHFyucoPFtm_ewpKTfo-yrbvoQs2KK10fuKVh5kYMX0FmcZ0UOA51YoACW_ibBpk3CatX-2U3cTNPEmWn3eF9ISovrXm4IxbAx0_UlpS_sBwRRvdDrsI_9dpVozl28Ouvhzt27vlgum6iseMbPadoBTxLXcSJZq_6NDrhkrN8gHku6JlzicS1G3syLUfSQm5rftAW2kQkc" 
+              alt="Keraton" 
+              className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
+            />
+            <div className="flex-1 flex flex-col justify-center">
+              <h4 className="font-bold text-gray-900 text-[15px] mb-0.5">{t('map.nearby')}</h4>
+              <p className="text-gray-400 text-xs mb-2">{t('map.bestPlaces')}</p>
+              <button className="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center shadow-md shadow-blue-600/30 active:scale-95 transition-transform">
+                <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>directions</span>
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
       <style>{`
-        .custom-popup .leaflet-popup-content-wrapper {
-          padding: 0;
-          overflow: hidden;
-          border-radius: 12px;
-          border: 1px solid rgba(193, 199, 207, 0.5); /* outline-variant */
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          background-color: var(--color-surface, #fff8f1);
-        }
-        .custom-popup .leaflet-popup-content {
-          margin: 0;
-          width: 240px !important;
-        }
-        .custom-popup .leaflet-popup-tip-container {
-          margin-top: -1px;
-        }
-        .custom-popup .leaflet-popup-tip {
-          background-color: var(--color-surface, #fff8f1);
-          border: 1px solid rgba(193, 199, 207, 0.5);
-          border-top: none;
-          border-left: none;
-        }
         .custom-leaflet-marker {
           background: transparent;
           border: none;
         }
         .leaflet-container {
-          background: #f4ede3; /* surface-container */
+          background: #eef2f6;
         }
       `}</style>
     </div>

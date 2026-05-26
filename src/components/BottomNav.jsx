@@ -1,15 +1,17 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const navItems = [
-  { icon: 'home', label: 'Beranda', path: '/' },
-  { icon: 'map', label: 'Peta', path: '/peta' },
-  { icon: 'event', label: 'Event', path: '/event' },
-  { icon: 'person', label: 'Profil', path: '/profil' },
+  { icon: 'home', labelKey: 'nav.home', path: '/' },
+  { icon: 'map', labelKey: 'nav.map', path: '/peta' },
+  { icon: 'event', labelKey: 'nav.event', path: '/event' },
+  { icon: 'person', labelKey: 'nav.profile', path: '/profil' },
 ];
 
 export default function BottomNav() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <nav className="fixed bottom-0 left-0 w-full z-50 bg-surface flex justify-around items-center px-4 pb-safe pt-2 shadow-[0_-2px_8px_rgba(0,0,0,0.06)]">
@@ -33,7 +35,7 @@ export default function BottomNav() {
             >
               {item.icon}
             </span>
-            <span className="font-label-sm text-label-sm">{item.label}</span>
+            <span className="font-label-sm text-label-sm">{t(item.labelKey)}</span>
           </button>
         );
       })}

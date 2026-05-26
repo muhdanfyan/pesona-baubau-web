@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Testimonial() {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t } = useLanguage();
 
   // Fallback data according to system rules if API fails or is empty
   const fallbackData = [
@@ -63,8 +65,8 @@ export default function Testimonial() {
   return (
     <section className="space-y-md py-lg">
       <div className="flex flex-col items-center text-center space-y-2 mb-lg">
-        <h3 className="font-headline-md text-headline-md text-primary">Apa Kata Traveler</h3>
-        <p className="text-on-surface-variant font-body-sm max-w-lg">Pengalaman nyata dari mereka yang telah menjelajahi keindahan Baubau bersama kami.</p>
+        <h3 className="font-headline-md text-headline-md text-primary">{t('testimonial.title')}</h3>
+        <p className="text-on-surface-variant font-body-sm max-w-lg">{t('testimonial.desc')}</p>
       </div>
       <div className="flex gap-lg overflow-x-auto pb-6 -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar snap-x snap-mandatory">
         {testimonials.map((t) => (

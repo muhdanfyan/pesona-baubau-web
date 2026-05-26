@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Homepage from './pages/Homepage';
 import KatalogDestinasi from './pages/KatalogDestinasi';
 import DetailDestinasi from './pages/DetailDestinasi';
@@ -31,9 +32,11 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 
