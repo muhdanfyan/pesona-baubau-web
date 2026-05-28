@@ -11,6 +11,7 @@ const destinationData = {
     mapUrl: 'https://maps.app.goo.gl/ewPCuxtZ4yNwpotx7',
     description: 'Benteng Keraton Buton merupakan benteng terluas di dunia menurut Guinness World Records. Bangunan bersejarah ini menjadi saksi bisu kejayaan Kesultanan Buton pada masa lampau, dengan arsitektur unik yang terbuat dari batu gunung dan direkatkan dengan putih telur. Dari atas benteng, Anda bisa melihat seluruh kota Baubau dan perairan laut yang memukau.',
     images: [
+      '/benteng_keraton.jpg',
       'https://jadesta.kemenpar.go.id/imgpost/77777.jpg',
       'https://jadesta.kemenpar.go.id/imgpost/77770.jpg',
       'https://jadesta.kemenpar.go.id/imgpost/78170.jpg',
@@ -24,6 +25,7 @@ const destinationData = {
     price: '$10.0',
     description: 'Pantai dengan gradasi warna air laut yang menakjubkan dan pasir putih halus. Tempat yang sempurna untuk bersantai, berenang, dan menikmati matahari terbenam.',
     images: [
+      '/pantai_nirwana.jpg',
       'https://lh3.googleusercontent.com/aida-public/AB6AXuC7kC8ZY-e4FYkaxTUz6Y-CVO9Dz_Nh8M8teLcLw1OOmPpbpn1yguqB14IkjAlagE4SYzkOt_tIENMCHoTJV3d85RZXf5-h8QCgJejip0tWrhpYXHg6T_7VhDEa9YSBBOvuBjCqUMyJiroFCNvXjNxU4CiXpEKfc0mA_KEg_hOm3W-YWha5hEP4TbJ1jJoG42vFz8JPuKOzsLFOUKoW4yfo5EoeG6PbeAsxIzeNWBAoxeN0zCJb15HA1BSIHBrEY-cAj49EAMeZEyM',
     ]
   },
@@ -35,6 +37,7 @@ const destinationData = {
     mapUrl: 'https://maps.app.goo.gl/57xcJYFpHUsyeYkm9',
     description: 'Ikonik pulau batu karang yang menjulang di tengah laut jernih Baubau.',
     images: [
+      '/batu_sori.jpg',
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAxCf_dairb8y2kgmRXwCUPU1qVK8nssSDlI6XpcNC40KbDGZC9m4eMSLrkHSa6RJUYoyknjw1g9CG2U4bp0u8u3IEr0Sj53aueTQ9h16KelstV4Q6X6gYauwU8bwg5bp2hTzqpmaxy5k9qUPoHinQHWfRUhIkiQHsCayZ3VdMU1xy5TVwnMOGL6I9hHPrcExA0rdofvyO68ooL8c19WrSNT9Sb-xfHPgqssiFTUKdwGnjOkTQ8Lyc-x2XwG0AxKe6yUsIcEVbj7EY',
     ]
   },
@@ -50,12 +53,13 @@ const destinationData = {
   },
   5: {
     name: 'Hutan Pinus Samparona',
-    rating: '4.7',
+    rating: '4.6',
     address: 'Baubau, Sulawesi Tenggara',
-    price: '$8.0',
+    price: '$5.0',
     mapUrl: 'https://maps.app.goo.gl/wtsomSGyNVet1z5n9',
     description: 'Kawasan wisata alam sejuk di pinggiran kota Baubau dengan area camping ground dan pohon pinus.',
     images: [
+      '/samparona.jpg',
       'https://jadesta.kemenpar.go.id/imgpost/53308.jpg',
       'https://jadesta.kemenpar.go.id/imgpost/53310.jpg',
       'https://jadesta.kemenpar.go.id/imgpost/53313.jpg',

@@ -7,21 +7,21 @@ import { useLanguage } from '../contexts/LanguageContext';
 const heroSlides = [
   {
     id: 1,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDC-L8Fb4TkEQ2j6Yqnr2PfDAqktXz1K3R1Ih_d9r4BcV2GFsxAXIxRaNWQGvNEYpj-msiD-EGlZjWc83Gq1P3RUjPPFq91UNMQu48SVnV3bmBLDPpmKOSYB4h9_qQIo83rtFwavLpoCP-CPn5Jq55u677MujQDDffras4_yHExwdhQxVQttNqSkncyuZId7291IPYJ5XG79ma0uw4LUSEuUn_IcHKmE7RVK9nFZSKnQRSjsjNltvMViJ71PZWbF_xvSu7lr9Uvkpo",
+    image: "/benteng_keraton.jpg",
     title: "Benteng Keraton Buton",
     desc: "Saksi sejarah kejayaan Kesultanan Buton dengan benteng terluas di dunia.",
     link: "/destinasi/1"
   },
   {
     id: 2,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAyQYKzX3KuF1dh80_ptXdp2_LTnge1ywhJoicNPgGsWqLX8GfFEO4PSaiw2_XYak3FEQgQErUM511a3hzZ9bT73uapUAx4BXrikAQH8jO_SypbE_5kiqW0Sm1ZvpCJ-JY09jaFFDIXXAFgOn9IWq2bbT9n5kQGbAPV0i-J7ngROlUKrxex97FRuoHN7m_aVvm3gg1krQ2bEud76YRKCdGYhxWZ0nqsIHqVLUTTCc-L1bFMwymqZrePb9QCfa7wgbBMKQShiygCI3Y",
+    image: "/pantai_nirwana.jpg",
     title: "Pantai Nirwana",
     desc: "Pantai dengan gradasi warna air laut yang menakjubkan dan pasir putih halus.",
     link: "/destinasi/2"
   },
   {
     id: 3,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxCf_dairb8y2kgmRXwCUPU1qVK8nssSDlI6XpcNC40KbDGZC9m4eMSLrkHSa6RJUYoyknjw1g9CG2U4bp0u8u3IEr0Sj53aueTQ9h16KelstV4Q6X6gYauwU8bwg5bp2hTzqpmaxy5k9qUPoHinQHWfRUhIkiQHsCayZ3VdMU1xy5TVwnMOGL6I9hHPrcExA0rdofvyO68ooL8c19WrSNT9Sb-xfHPgqssiFTUKdwGnjOkTQ8Lyc-x2XwG0AxKe6yUsIcEVbj7EY",
+    image: "/batu_sori.jpg",
     title: "Batu Sori",
     desc: "Ikonik pulau batu karang yang menjulang di tengah laut jernih Baubau.",
     link: "/destinasi/3"
@@ -42,7 +42,7 @@ const popularPlaces = [
     title: "Benteng Keraton Buton",
     location: "Baubau, Sultra",
     rating: 4.8,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD6cF2sYsQQYbtJscIkVMRXWnkl1mpZ6GiP7a9DcVxzUdWRgAsO0I2GWCY-lOrDygOBhAw_JlNHIE2HC7spP3hF5k6J_jYsP7TW0Q_3krV1dfgjsEPguKuJRcGv4yJOdOIHWbaKE4TZqI86-O3Bh_8hcPk-sC9nIWhBGsQIP-10JGIXgTLN2TQ_OeqnhJfqeSj-6hOWODtAs-U1b9UdVP_cJ_R_TOFieh1NdM7_gzpSccW9MDAIEjKEq8doxOfshLEkv_cWrQ6UFGs",
+    image: "/benteng_keraton.jpg",
     category: "Culture"
   },
   {
@@ -50,7 +50,7 @@ const popularPlaces = [
     title: "Pantai Nirwana",
     location: "Baubau, Sultra",
     rating: 4.9,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAyQYKzX3KuF1dh80_ptXdp2_LTnge1ywhJoicNPgGsWqLX8GfFEO4PSaiw2_XYak3FEQgQErUM511a3hzZ9bT73uapUAx4BXrikAQH8jO_SypbE_5kiqW0Sm1ZvpCJ-JY09jaFFDIXXAFgOn9IWq2bbT9n5kQGbAPV0i-J7ngROlUKrxex97FRuoHN7m_aVvm3gg1krQ2bEud76YRKCdGYhxWZ0nqsIHqVLUTTCc-L1bFMwymqZrePb9QCfa7wgbBMKQShiygCI3Y",
+    image: "/pantai_nirwana.jpg",
     category: "Beach"
   },
   {
@@ -58,7 +58,7 @@ const popularPlaces = [
     title: "Batu Sori",
     location: "Baubau, Sultra",
     rating: 4.7,
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAxCf_dairb8y2kgmRXwCUPU1qVK8nssSDlI6XpcNC40KbDGZC9m4eMSLrkHSa6RJUYoyknjw1g9CG2U4bp0u8u3IEr0Sj53aueTQ9h16KelstV4Q6X6gYauwU8bwg5bp2hTzqpmaxy5k9qUPoHinQHWfRUhIkiQHsCayZ3VdMU1xy5TVwnMOGL6I9hHPrcExA0rdofvyO68ooL8c19WrSNT9Sb-xfHPgqssiFTUKdwGnjOkTQ8Lyc-x2XwG0AxKe6yUsIcEVbj7EY",
+    image: "/batu_sori.jpg",
     category: "Beach"
   }
 ];
@@ -235,7 +235,7 @@ export default function Homepage() {
           <section className="px-6 mb-16">
             <div className="flex justify-between items-center mb-5">
               <h2 className="text-xl font-bold text-gray-900">{t('home.popularDestinations')}</h2>
-              <button className="text-blue-500 font-semibold text-sm hover:underline">{t('home.seeAll')}</button>
+              <button onClick={() => navigate('/destinasi')} className="text-blue-500 font-semibold text-sm hover:underline">{t('home.seeAll')}</button>
             </div>
             
             <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-6 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory scroll-pl-6">
