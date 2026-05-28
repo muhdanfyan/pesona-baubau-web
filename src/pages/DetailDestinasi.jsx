@@ -8,11 +8,13 @@ const destinationData = {
     rating: '4.8',
     address: 'Baubau, Sulawesi Tenggara',
     price: '$15.0',
+    mapUrl: 'https://maps.app.goo.gl/ewPCuxtZ4yNwpotx7',
     description: 'Benteng Keraton Buton merupakan benteng terluas di dunia menurut Guinness World Records. Bangunan bersejarah ini menjadi saksi bisu kejayaan Kesultanan Buton pada masa lampau, dengan arsitektur unik yang terbuat dari batu gunung dan direkatkan dengan putih telur. Dari atas benteng, Anda bisa melihat seluruh kota Baubau dan perairan laut yang memukau.',
     images: [
+      'https://jadesta.kemenpar.go.id/imgpost/77777.jpg',
+      'https://jadesta.kemenpar.go.id/imgpost/77770.jpg',
+      'https://jadesta.kemenpar.go.id/imgpost/78170.jpg',
       'https://lh3.googleusercontent.com/aida-public/AB6AXuD6cF2sYsQQYbtJscIkVMRXWnkl1mpZ6GiP7a9DcVxzUdWRgAsO0I2GWCY-lOrDygOBhAw_JlNHIE2HC7spP3hF5k6J_jYsP7TW0Q_3krV1dfgjsEPguKuJRcGv4yJOdOIHWbaKE4TZqI86-O3Bh_8hcPk-sC9nIWhBGsQIP-10JGIXgTLN2TQ_OeqnhJfqeSj-6hOWODtAs-U1b9UdVP_cJ_R_TOFieh1NdM7_gzpSccW9MDAIEjKEq8doxOfshLEkv_cWrQ6UFGs',
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBVni4Dy34q-P6ORp_cffIGeTmgFhJgGB9nI1EuNemSAFpzvxFfsyMwNw061i7jeIgU00wA_fglVdcnqsariJojdOMp1XXaX-ZgdTRZ951R0WE67-HLsq-AUpPxtMAKEqIz9LemGSlHw6jye9kOEG-6z5dp4NKxSygXuR4Jgm_ukqSGUb9ppfk1-hk6QAiDdZA3ClXWl0jcACm2E4blXQ-4qYngtnlGrBKv9vTaSsNInT6jlwAhx4qgUhsu813C5UHvCU3sDX-R95M',
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDqBUXlTfyk2ltflkudVedat6fNGxWxPGnQXoWHBrm2QxLHsV6YzaUrgunyF0ZWg3bRvCNIs-VzQOuAXONftnUBVI9GmJBhFqK5XgikgkTdLrv54jPz-TsgbVJyCvvwfZGcZxpM-N1UFoAECrlSbrLHcR_LwNE7n7EYOZSHK0Ue21LKNG2pIWI6r_C-Tq1JotmDK0jy7td2XhdbWF3X4wLaiW9FiRhhye9Bviw6kkcKnXnKeFJdtkwFz-rO50fv4VotUV1PUlcBvq0',
     ]
   },
   2: {
@@ -30,9 +32,33 @@ const destinationData = {
     rating: '4.7',
     address: 'Baubau, Sulawesi Tenggara',
     price: '$12.0',
+    mapUrl: 'https://maps.app.goo.gl/57xcJYFpHUsyeYkm9',
     description: 'Ikonik pulau batu karang yang menjulang di tengah laut jernih Baubau.',
     images: [
       'https://lh3.googleusercontent.com/aida-public/AB6AXuAxCf_dairb8y2kgmRXwCUPU1qVK8nssSDlI6XpcNC40KbDGZC9m4eMSLrkHSa6RJUYoyknjw1g9CG2U4bp0u8u3IEr0Sj53aueTQ9h16KelstV4Q6X6gYauwU8bwg5bp2hTzqpmaxy5k9qUPoHinQHWfRUhIkiQHsCayZ3VdMU1xy5TVwnMOGL6I9hHPrcExA0rdofvyO68ooL8c19WrSNT9Sb-xfHPgqssiFTUKdwGnjOkTQ8Lyc-x2XwG0AxKe6yUsIcEVbj7EY',
+    ]
+  },
+  4: {
+    name: 'Istana Malige',
+    rating: '4.6',
+    address: 'Baubau, Sulawesi Tenggara',
+    price: '$5.0',
+    description: 'Rumah adat Kesultanan Buton yang dibangun dengan konstruksi kayu bersusun tanpa menggunakan paku.',
+    images: [
+      'https://images.unsplash.com/photo-1596706927976-9d332617a224?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
+    ]
+  },
+  5: {
+    name: 'Hutan Pinus Samparona',
+    rating: '4.7',
+    address: 'Baubau, Sulawesi Tenggara',
+    price: '$8.0',
+    mapUrl: 'https://maps.app.goo.gl/wtsomSGyNVet1z5n9',
+    description: 'Kawasan wisata alam sejuk di pinggiran kota Baubau dengan area camping ground dan pohon pinus.',
+    images: [
+      'https://jadesta.kemenpar.go.id/imgpost/53308.jpg',
+      'https://jadesta.kemenpar.go.id/imgpost/53310.jpg',
+      'https://jadesta.kemenpar.go.id/imgpost/53313.jpg',
     ]
   }
 };
@@ -131,6 +157,28 @@ export default function DetailDestinasi() {
               </p>
             </div>
 
+            {/* Routes Section */}
+            <div className="mb-8 bg-blue-50/50 rounded-2xl p-4 border border-blue-100/50">
+              <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <span className="material-symbols-outlined text-blue-500 text-[20px]">directions_bus</span>
+                {t('detail.howToGetThere')}
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex gap-3 text-[14px] text-gray-600">
+                  <span className="material-symbols-outlined text-gray-400 text-[18px] shrink-0 mt-0.5">flight_takeoff</span>
+                  <span>{t('detail.routeJakarta')}</span>
+                </li>
+                <li className="flex gap-3 text-[14px] text-gray-600">
+                  <span className="material-symbols-outlined text-gray-400 text-[18px] shrink-0 mt-0.5">directions_boat</span>
+                  <span>{t('detail.routeMakassar')}</span>
+                </li>
+                <li className="flex gap-3 text-[14px] text-gray-600">
+                  <span className="material-symbols-outlined text-gray-400 text-[18px] shrink-0 mt-0.5">public</span>
+                  <span>{t('detail.routeIntl')}</span>
+                </li>
+              </ul>
+            </div>
+
             {/* Travelers & Price */}
             <div className="flex justify-between items-center mb-8 border-t border-gray-100 pt-6">
               <div className="flex items-center">
@@ -161,7 +209,13 @@ export default function DetailDestinasi() {
             <span className="text-blue-500 font-bold text-[15px]">{t('detail.save')}</span>
           </button>
           <button 
-            onClick={() => navigate('/peta')}
+            onClick={() => {
+              if (data.mapUrl) {
+                window.open(data.mapUrl, '_blank', 'noopener,noreferrer');
+              } else {
+                navigate('/peta');
+              }
+            }}
             className="flex-1 py-4 px-6 rounded-2xl bg-blue-600 text-white flex justify-center items-center gap-2 shadow-xl shadow-blue-600/30 hover:bg-blue-700 transition-colors active:scale-95"
           >
             <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>near_me</span>

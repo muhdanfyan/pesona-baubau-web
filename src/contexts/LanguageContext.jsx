@@ -81,6 +81,10 @@ const translations = {
       directions: 'Directions',
       seeMore: 'See More',
       seeLess: 'See Less',
+      howToGetThere: 'How to Get There',
+      routeJakarta: 'From Jakarta: Flight to Makassar (UPG) or Kendari (KDI), then connect to Baubau (BUW).',
+      routeMakassar: 'From Makassar: Direct flight to Baubau (BUW) approx. 1 hour, or via PELNI ship (approx. 14 hours).',
+      routeIntl: 'From International Airports (Bali/Jakarta): Transit via Makassar (UPG) then to Baubau.',
       destinations: {
         1: {
           name: 'Buton Palace Fortress',
@@ -96,6 +100,16 @@ const translations = {
           name: 'Batu Sori',
           address: 'Baubau, Southeast Sulawesi',
           description: 'An iconic rocky island towering in the middle of Baubau\'s crystal-clear sea.',
+        },
+        4: {
+          name: 'Malige Palace',
+          address: 'Baubau, Southeast Sulawesi',
+          description: 'Traditional house of the Buton Sultanate constructed from wood without using nails. Located not far from the city center.',
+        },
+        5: {
+          name: 'Samparona Pine Forest',
+          address: 'Baubau, Southeast Sulawesi',
+          description: 'A cool natural tourist area on the outskirts of Baubau city. Offers a camping ground area, dense rows of pine trees, and aesthetic nature-themed photo spots.',
         },
       },
     },
@@ -211,6 +225,10 @@ const translations = {
       directions: 'Rute',
       seeMore: 'Lihat Selengkapnya',
       seeLess: 'Sembunyikan',
+      howToGetThere: 'Cara Menuju ke Sini',
+      routeJakarta: 'Dari Jakarta: Penerbangan transit via Makassar (UPG) atau Kendari (KDI), dilanjutkan ke Baubau (BUW).',
+      routeMakassar: 'Dari Makassar: Penerbangan langsung ke Baubau (BUW) sekitar 1 jam, atau menggunakan kapal laut PELNI (sekitar 14 jam).',
+      routeIntl: 'Dari Bandara Internasional (Bali/Jakarta): Transit via Makassar (UPG) lalu penerbangan lanjutan ke Baubau.',
       destinations: {
         1: {
           name: 'Benteng Keraton Buton',
@@ -226,6 +244,16 @@ const translations = {
           name: 'Batu Sori',
           address: 'Baubau, Sulawesi Tenggara',
           description: 'Ikonik pulau batu karang yang menjulang di tengah laut jernih Baubau.',
+        },
+        4: {
+          name: 'Istana Malige',
+          address: 'Baubau, Sulawesi Tenggara',
+          description: 'Rumah adat Kesultanan Buton yang dibangun dengan konstruksi kayu bersusun tanpa menggunakan paku. Berada tidak jauh dari pusat kota.',
+        },
+        5: {
+          name: 'Hutan Pinus Samparona',
+          address: 'Baubau, Sulawesi Tenggara',
+          description: 'Kawasan wisata alam sejuk di pinggiran kota Baubau. Menawarkan area camping ground, jajaran pohon pinus yang rapat, dan spot-spot foto estetik bertema alam.',
         },
       },
     },

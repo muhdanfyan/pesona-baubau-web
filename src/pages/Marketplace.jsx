@@ -4,13 +4,15 @@ import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 import CardProduk from '../components/CardProduk';
 
-const categories = ['Semua', 'Tenun', 'Kuliner', 'Suvenir', 'Kerajinan'];
+const categories = ['Semua', 'Tenun', 'Kuliner', 'Suvenir', 'Kerajinan', 'Penginapan', 'Jasa Fotografi'];
 
 const products = [
   { id: 1, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAa7EycdJPP8HVqn4VbFRyp_F2LwVwHzqiYYsCOqvsI9Js0osxAzheMl06G05e_bgWNkfczwbPoxIx3_dtaJkIsTX6FvKAyRhcsvRBWMMzNhJ3uGkBtywYZaUEFIEgxDleEcrC8IuV2ak5vEWXiF73IF_FbQBc8d_eLgyEAWxXMfgowRfUFeUS3exvHUBX7BRaxWZNTnuIM42K852dYwqkWi2DWqYBDb77c6nykQBkwfq8t0yRj9MGAZD3MDsf39tACZ2m761s7-cY', name: 'Kain Tenun Buton Motif Bhia', price: 'Rp 450.000', seller: 'UMKM Barakati', badge: 'Premium' },
   { id: 2, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCbtxo2eTcPoMQvQvxkm40jQS4I5EkzfSN_hHcVhTgEfq3OectxrVXcZk7rPGlNzT3BEbu7Z685AC5lg5szGdibkt25WiTFjSBUC6r8uRDGF5zP8J3Umj1p090w1SqAr5Fnxi_bAOSSGijpsfx8Xuf32SXPdr_ncjb8Cg6EHdgrtEcTrZCv_I5In_HQq0zoV5OGeU9q8Ro0Yc6Ue3bILSs74GVQoqR3u1FfJMfkdD8SIK_zdQzMv_YoMncLgj3cbr0HHTRhlQ-31OY', name: 'Kasuami Instan Premium', price: 'Rp 25.000', seller: 'Dapur Wolio', badge: 'KULINER' },
   { id: 3, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAsYi2itrMVrhy0jU5YLEwChuW8swU_-EctaAolgU8F9mIo78bA67QFTsS25hYvcZix1VqqyzF9UhPyDLnHiVBbLdRDvl3KZGQjQqrxm2nXVH_FtV7FpjozQDKeiee23xLvGPYwG_9ZMTI3ev7VUipcYk0f55uocyICZbbtgsjU_ro9ky_-IVOXMAPMYVbYO23hbfXwMYUw-xKI_yiqni6N_4jjkHyeMeLgeeMPeYEEa3EhA03-KVY_srQgouDVuDlwMmEaSfbGtIo', name: 'Miniatur Kapal Lambo', price: 'Rp 175.000', seller: 'Karya Bahari', badge: 'KERAJINAN' },
   { id: 4, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCwpWxf2vQpm36Gr-Z6FaMqhNswtkUxdmAkhv6Br6IiQ8Urdnwc3IDotJG2RPpIAL5IHSgYUamzHmx29rHl97puVrgbWR2D12Vvh9jz9Gdqf-FxpHYhGMDnBeFfkFplvRfONTARd1c1Z19Kg-JlEpBnJuH35KrnWz6NkUt8jRhh-INZln6iLH4NDfaP492BUUZ_XTW9_rp9gUuD6CXi0gNDUYki56q8pzPxAsQ3pOyqNyUu6YTEgpQeWYEmYeIIoCT5cSQTvgs42S0', name: 'Gantungan Kunci Kerang', price: 'Rp 15.000', seller: 'Souvenir Butuni', badge: 'SUVENIR' },
+  { id: 5, image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3', name: 'Homestay Nirwana', price: 'Mulai Rp 250.000', seller: 'Mitra Penginapan', badge: 'PENGINAPAN' },
+  { id: 6, image: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3', name: 'Paket Dokumentasi Liburan', price: 'Mulai Rp 500.000', seller: 'ButonLens', badge: 'JASA FOTOGRAFI' },
 ];
 
 export default function Marketplace() {
