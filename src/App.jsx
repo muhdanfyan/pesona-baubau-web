@@ -10,6 +10,7 @@ import KalenderEvent from './pages/KalenderEvent';
 import TripPlanner from './pages/TripPlanner';
 import VirtualTour from './pages/VirtualTour';
 import Profil from './pages/Profil';
+import HotelList from './pages/HotelList';
 
 function AppContent() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function AppContent() {
       <Route path="/event" element={<KalenderEvent />} />
       <Route path="/trip-planner" element={<TripPlanner />} />
       <Route path="/virtual-tour" element={<VirtualTour />} />
+      <Route path="/penginapan" element={<HotelList />} />
       <Route path="/profil" element={<Profil />} />
     </Routes>
   );

@@ -225,6 +225,13 @@ export default function DetailDestinasi() {
             <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>near_me</span>
             <span className="font-bold text-[15px]">{t('detail.directions')}</span>
           </button>
+          <button
+            onClick={() => navigate('/trip-planner')}
+            className="flex-1 py-4 px-6 rounded-2xl bg-emerald-600 text-white flex justify-center items-center gap-2 shadow-xl shadow-emerald-600/30 hover:bg-emerald-700 transition-colors active:scale-95"
+          >
+            <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>account_balance_wallet</span>
+            <span className="font-bold text-[15px]">Tambah ke Rencana Budget</span>
+          </button>
         </div>
       </div>
 

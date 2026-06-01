@@ -1,30 +1,133 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
 
+// --- DATA ---
+
+const destinations = [
+  { id: 1, name: 'Benteng Keraton Buton', price: 15 },
+  { id: 2, name: 'Pantai Nirwana', price: 10 },
+  { id: 3, name: 'Batu Sori', price: 12 },
+  { id: 4, name: 'Istana Malige', price: 5 },
+  { id: 5, name: 'Hutan Pinus Samparona', price: 5 },
+];
+
+const penginapan = [
+  { id: 1, name: 'Hotel Nirwana', price: 45, location: 'Dekat Pantai Nirwana', bintang: 4 },
+  { id: 2, name: 'Homestay Benteng', price: 15, location: 'Dekat Benteng Keraton', bintang: 2 },
+  { id: 3, name: 'Resort Samparona', price: 30, location: 'Di Hutan Pinus', bintang: 3 },
+  { id: 4, name: 'Penginapan Bahari', price: 20, location: 'Pusat Kota', bintang: 2 },
+];
+
+const aksesoris = [
+  { id: 1, name: 'Kain Tenun Buton', price: 25 },
+  { id: 2, name: 'Gelang Aksara Buton', price: 8 },
+  { id: 3, name: 'Gantungan Kunci Miniatur Benteng', price: 3 },
+  { id: 4, name: 'Kopi Buton 250gr', price: 10 },
+  { id: 5, name: 'Madu Hutan Buton', price: 15 },
+];
+
+const fasilitasWisata = [
+  { id: 1, name: 'Sewa Mobil + Driver', price: 50, satuan: '/hari' },
+  { id: 2, name: 'Tour Guide Lokal', price: 30, satuan: '/hari' },
+  { id: 3, name: 'Dokumentasi Foto/Video', price: 40, satuan: '' },
+  { id: 4, name: 'Sewa Peralatan Snorkeling', price: 15, satuan: '/hari' },
+  { id: 5, name: 'Tiket Masuk Destinasi', price: 10, satuan: '/destinasi' },
+];
+
+const KURS = 16500;
+
+// --- HELPER ---
+function formatIDR(usd) {
+  return 'Rp ' + (usd * KURS).toLocaleString('id-ID');
+}
+
 export default function TripPlanner() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedDuration, setSelectedDuration] = useState(null);
   const [selectedTransport, setSelectedTransport] = useState(null);
   const [showResult, setShowResult] = useState(false);
 
+  // Budget state
+  const [selectedDestinations, setSelectedDestinations] = useState([]);
+  const [selectedPenginapan, setSelectedPenginapan] = useState([]);
+  const [selectedAksesoris, setSelectedAksesoris] = useState([]);
+  const [selectedFasilitas, setSelectedFasilitas] = useState([]);
+  const [budgetDays, setBudgetDays] = useState(1);
+
   const nextStep = (step) => {
-    setCurrentStep(step);
+    if (step === 4) {
+      setCurrentStep(4);
+    } else {
+      setCurrentStep(step);
+    }
   };
 
   const selectDuration = (label) => {
     setSelectedDuration(label);
+    const days = label === '1 Hari' ? 1 : label === '2 Hari 1 Malam' ? 2 : 3;
+    setBudgetDays(days);
   };
 
   const selectTransport = (label) => {
     setSelectedTransport(label);
   };
 
+  const toggleDestinasi = (id) => {
+    setSelectedDestinations(prev =>
+      prev.includes(id) ? prev.filter(d => d !== id) : [...prev, id]
+    );
+  };
+
+  const togglePenginapan = (id) => {
+    setSelectedPenginapan(prev =>
+      prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
+    );
+  };
+
+  const toggleAksesoris = (id) => {
+    setSelectedAksesoris(prev =>
+      prev.includes(id) ? prev.filter(a => a !== id) : [...prev, id]
+    );
+  };
+
+  const toggleFasilitas = (id) => {
+    setSelectedFasilitas(prev =>
+      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
+    );
+  };
+
   const generateItinerary = () => {
     setShowResult(true);
   };
 
-  const progressWidth = ((currentStep - 1) / 2) * 100;
+  // Budget calculations
+  const destCost = selectedDestinations.reduce((sum, id) => {
+    const d = destinations.find(d => d.id === id);
+    return sum + (d ? d.price : 0);
+  }, 0);
+
+  const penginapanCost = selectedPenginapan.reduce((sum, id) => {
+    const p = penginapan.find(p => p.id === id);
+    return sum + (p ? p.price * budgetDays : 0);
+  }, 0);
+
+  const aksesorisCost = selectedAksesoris.reduce((sum, id) => {
+    const a = aksesoris.find(a => a.id === id);
+    return sum + (a ? a.price : 0);
+  }, 0);
+
+  const fasilitasCost = selectedFasilitas.reduce((sum, id) => {
+    const f = fasilitasWisata.find(f => f.id === id);
+    return sum + (f ? f.price * budgetDays : 0);
+  }, 0);
+
+  const totalUSD = destCost + penginapanCost + aksesorisCost + fasilitasCost;
+  const totalIDR = totalUSD * KURS;
+
+  const progressWidthBudget = ((currentStep - 1) / 3) * 100;
 
   return (
     <div className="min-h-screen pb-24 bg-surface">
@@ -45,7 +148,7 @@ export default function TripPlanner() {
         {/* Progress Bar */}
         <div className="relative mb-3xl px-lg">
           <div className="flex justify-between relative z-10">
-            {[1, 2, 3].map((step) => (
+            {[1, 2, 3, 4].map((step) => (
               <div
                 key={step}
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors duration-300 ${
@@ -61,7 +164,7 @@ export default function TripPlanner() {
           <div className="absolute top-5 left-lg right-lg h-0.5 bg-surface-container-highest -z-0">
             <div
               className="h-full bg-primary-container transition-all duration-500"
-              style={{ width: `${progressWidth}%` }}
+              style={{ width: `${progressWidthBudget}%` }}
             ></div>
           </div>
         </div>
@@ -164,7 +267,180 @@ export default function TripPlanner() {
                   </button>
                 ))}
               </div>
-              <div className="mt-2xl flex justify-center">
+              <div className="mt-2xl flex justify-between">
+                <button
+                  onClick={() => nextStep(2)}
+                  className="text-primary font-label-md px-lg py-md border border-primary rounded-full hover:bg-primary-fixed transition-colors"
+                >
+                  Kembali
+                </button>
+                <button
+                  onClick={() => nextStep(4)}
+                  className="bg-primary text-on-primary px-3xl py-md rounded-full font-label-md hover:bg-primary-container active:scale-95 transition-all"
+                >
+                  Lanjut ke Budget
+                </button>
+              </div>
+            </div>
+          </section>
+
+          {/* Step 4: Budget Planner */}
+          <section className={`step-transition ${currentStep === 4 ? 'active-step' : 'hidden-step'}`}>
+            <div className="bg-surface-container-lowest rounded-xl p-xl shadow-sm border border-surface-variant">
+              <h3 className="font-headline-sm text-headline-sm text-primary mb-lg text-center">
+                <span className="material-symbols-outlined align-middle text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>account_balance_wallet</span>{' '}
+                Budgeting Planner
+              </h3>
+              <p className="text-center text-on-surface-variant font-body-md mb-lg">Atur rencana anggaran perjalanan Anda</p>
+
+              {/* Pilih Destinasi */}
+              <div className="mb-lg">
+                <h4 className="font-label-md text-primary mb-sm flex items-center gap-sm">
+                  <span className="material-symbols-outlined text-lg">pin_drop</span> Pilih Destinasi
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
+                  {destinations.map((d) => (
+                    <label key={d.id} className={`flex items-center gap-md p-md rounded-xl border-2 cursor-pointer transition-all ${
+                      selectedDestinations.includes(d.id)
+                        ? 'border-primary bg-primary-fixed-dim/10'
+                        : 'border-surface-variant bg-surface hover:border-primary-container'
+                    }`}>
+                      <input
+                        type="checkbox"
+                        checked={selectedDestinations.includes(d.id)}
+                        onChange={() => toggleDestinasi(d.id)}
+                        className="w-5 h-5 accent-primary"
+                      />
+                      <div className="flex-1">
+                        <span className="font-label-md">{d.name}</span>
+                      </div>
+                      <span className="font-label-sm text-primary">${d.price}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pilih Penginapan */}
+              <div className="mb-lg">
+                <h4 className="font-label-md text-primary mb-sm flex items-center gap-sm">
+                  <span className="material-symbols-outlined text-lg">hotel</span> Pilih Penginapan
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
+                  {penginapan.map((p) => (
+                    <label key={p.id} className={`flex items-center gap-md p-md rounded-xl border-2 cursor-pointer transition-all ${
+                      selectedPenginapan.includes(p.id)
+                        ? 'border-primary bg-primary-fixed-dim/10'
+                        : 'border-surface-variant bg-surface hover:border-primary-container'
+                    }`}>
+                      <input
+                        type="checkbox"
+                        checked={selectedPenginapan.includes(p.id)}
+                        onChange={() => togglePenginapan(p.id)}
+                        className="w-5 h-5 accent-primary"
+                      />
+                      <div className="flex-1">
+                        <span className="font-label-md">{p.name}</span>
+                        <span className="block text-xs text-on-surface-variant">{p.location}</span>
+                      </div>
+                      <div className="text-right">
+                        <span className="font-label-sm text-primary">${p.price}</span>
+                        <span className="block text-xs text-on-surface-variant">/malam</span>
+                      </div>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pilih Aksesoris / Souvenir */}
+              <div className="mb-lg">
+                <h4 className="font-label-md text-primary mb-sm flex items-center gap-sm">
+                  <span className="material-symbols-outlined text-lg">card_giftcard</span> Pilih Aksesoris / Souvenir
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
+                  {aksesoris.map((a) => (
+                    <label key={a.id} className={`flex items-center gap-md p-md rounded-xl border-2 cursor-pointer transition-all ${
+                      selectedAksesoris.includes(a.id)
+                        ? 'border-primary bg-primary-fixed-dim/10'
+                        : 'border-surface-variant bg-surface hover:border-primary-container'
+                    }`}>
+                      <input
+                        type="checkbox"
+                        checked={selectedAksesoris.includes(a.id)}
+                        onChange={() => toggleAksesoris(a.id)}
+                        className="w-5 h-5 accent-primary"
+                      />
+                      <div className="flex-1">
+                        <span className="font-label-md">{a.name}</span>
+                      </div>
+                      <span className="font-label-sm text-primary">${a.price}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Fasilitas Wisata */}
+              <div className="mb-lg">
+                <h4 className="font-label-md text-primary mb-sm flex items-center gap-sm">
+                  <span className="material-symbols-outlined text-lg">support</span> Fasilitas Wisata
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
+                  {fasilitasWisata.map((f) => (
+                    <label key={f.id} className={`flex items-center gap-md p-md rounded-xl border-2 cursor-pointer transition-all ${
+                      selectedFasilitas.includes(f.id)
+                        ? 'border-primary bg-primary-fixed-dim/10'
+                        : 'border-surface-variant bg-surface hover:border-primary-container'
+                    }`}>
+                      <input
+                        type="checkbox"
+                        checked={selectedFasilitas.includes(f.id)}
+                        onChange={() => toggleFasilitas(f.id)}
+                        className="w-5 h-5 accent-primary"
+                      />
+                      <div className="flex-1">
+                        <span className="font-label-md">{f.name}</span>
+                      </div>
+                      <span className="font-label-sm text-primary">${f.price}{f.satuan}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              {/* Budget Summary Live */}
+              <div className="bg-primary-fixed-dim/5 rounded-xl p-lg border border-primary-container">
+                <h4 className="font-headline-sm text-headline-sm text-primary mb-md">Ringkasan Biaya {budgetDays > 1 ? `(${budgetDays} Hari)` : ''}</h4>
+                <div className="space-y-sm mb-md">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-on-surface-variant">Destinasi</span>
+                    <span>${destCost} | {formatIDR(destCost)}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-on-surface-variant">Penginapan</span>
+                    <span>${penginapanCost} | {formatIDR(penginapanCost)}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-on-surface-variant">Aksesoris/Souvenir</span>
+                    <span>${aksesorisCost} | {formatIDR(aksesorisCost)}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-on-surface-variant">Fasilitas Wisata</span>
+                    <span>${fasilitasCost} | {formatIDR(fasilitasCost)}</span>
+                  </div>
+                  <div className="border-t border-primary-container pt-sm">
+                    <div className="flex justify-between font-bold text-primary">
+                      <span>Grand Total</span>
+                      <span>${totalUSD.toLocaleString('en-US')} | {formatIDR(totalUSD)}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-2xl flex justify-between">
+                <button
+                  onClick={() => nextStep(3)}
+                  className="text-primary font-label-md px-lg py-md border border-primary rounded-full hover:bg-primary-fixed transition-colors"
+                >
+                  Kembali
+                </button>
                 <button
                   onClick={generateItinerary}
                   className="bg-[#1A5276] text-white px-3xl py-lg rounded-full font-headline-sm hover:brightness-110 active:scale-95 transition-all shadow-lg flex items-center gap-md"
@@ -185,13 +461,46 @@ export default function TripPlanner() {
                 <div className="flex justify-between items-start">
                   <div>
                     <h3 className="font-headline-lg text-headline-lg mb-xs">Perjalanan Budaya Buton</h3>
-                    <p className="font-body-md text-primary-fixed-dim">3 Hari Menjelajahi Sejarah & Alam Baubau</p>
+                    <p className="font-body-md text-primary-fixed-dim">{selectedDuration || '3 Hari'} Menjelajahi Sejarah & Alam Baubau</p>
                   </div>
                   <div className="bg-secondary-container text-on-secondary-container px-md py-sm rounded-lg font-label-md">
                     Dibuat Khusus Untuk Anda
                   </div>
                 </div>
               </div>
+
+              {/* Budget Result Summary */}
+              <div className="p-xl bg-surface-container-low border-b border-surface-variant">
+                <h4 className="font-headline-sm text-headline-sm text-primary mb-md">Rencana Anggaran</h4>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-md">
+                  <div className="bg-surface rounded-xl p-md text-center">
+                    <span className="block font-label-sm text-on-surface-variant">Destinasi</span>
+                    <span className="block font-headline-sm text-primary">${destCost}</span>
+                    <span className="block text-xs text-on-surface-variant">{formatIDR(destCost)}</span>
+                  </div>
+                  <div className="bg-surface rounded-xl p-md text-center">
+                    <span className="block font-label-sm text-on-surface-variant">Penginapan</span>
+                    <span className="block font-headline-sm text-primary">${penginapanCost}</span>
+                    <span className="block text-xs text-on-surface-variant">{formatIDR(penginapanCost)}</span>
+                  </div>
+                  <div className="bg-surface rounded-xl p-md text-center">
+                    <span className="block font-label-sm text-on-surface-variant">Souvenir</span>
+                    <span className="block font-headline-sm text-primary">${aksesorisCost}</span>
+                    <span className="block text-xs text-on-surface-variant">{formatIDR(aksesorisCost)}</span>
+                  </div>
+                  <div className="bg-surface rounded-xl p-md text-center">
+                    <span className="block font-label-sm text-on-surface-variant">Fasilitas</span>
+                    <span className="block font-headline-sm text-primary">${fasilitasCost}</span>
+                    <span className="block text-xs text-on-surface-variant">{formatIDR(fasilitasCost)}</span>
+                  </div>
+                </div>
+                <div className="mt-md text-center p-md bg-primary-fixed-dim/10 rounded-xl">
+                  <p className="font-body-sm text-on-surface-variant">Grand Total Anggaran</p>
+                  <p className="font-headline-lg text-headline-lg text-primary">${totalUSD.toLocaleString('en-US')}</p>
+                  <p className="font-label-sm text-on-surface-variant">{formatIDR(totalUSD)}</p>
+                </div>
+              </div>
+
               <div className="p-xl space-y-xl relative">
                 <h4 className="font-headline-sm text-headline-sm text-primary mb-lg">Timeline Perjalanan</h4>
                 <div className="itinerary-line relative space-y-xl" style={{ position: 'relative' }}>
