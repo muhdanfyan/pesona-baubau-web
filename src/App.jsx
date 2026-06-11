@@ -9,6 +9,7 @@ import DetailProduk from './pages/DetailProduk';
 import KalenderEvent from './pages/KalenderEvent';
 import TripPlanner from './pages/TripPlanner';
 import Profil from './pages/Profil';
+import HotelList from './pages/HotelList';
 
 const Peta = lazy(() => import('./pages/Peta'));
 const VirtualTour = lazy(() => import('./pages/VirtualTour'));
