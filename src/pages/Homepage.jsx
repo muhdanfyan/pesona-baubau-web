@@ -68,6 +68,7 @@ export default function Homepage() {
   const [activeCat, setActiveCat] = useState('Culture');
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeFeature, setActiveFeature] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, toggleLanguage, t } = useLanguage();
 
   const getCategoryLabel = (id) => {
@@ -121,46 +122,111 @@ export default function Homepage() {
         
         <div className="max-w-md mx-auto lg:max-w-none">
           {/* Header Section */}
-          <section className="px-6 pt-10 pb-6 flex justify-between items-start">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-1">{t('home.welcome')}</h1>
-              <p className="text-gray-500 font-medium">{t('home.explore')}</p>
+          <section className="px-4 md:px-6 pt-6 md:pt-8 pb-2 md:pb-4 flex justify-between items-center">
+            {/* Logo */}
+            <div className="flex items-center gap-1.5 md:gap-2 cursor-pointer" onClick={() => navigate('/')}>
+              <img src="/favicon.svg" alt="Pesona Baubau" className="w-6 h-6 md:w-8 md:h-8" />
+              <span className="font-black text-blue-900 text-[14px] md:text-[17px] tracking-tight whitespace-nowrap">Pesona Baubau</span>
             </div>
-            <div className="flex items-center gap-3">
+            
+            {/* Actions */}
+            <div className="flex items-center gap-2 md:gap-3">
               <button 
                 onClick={toggleLanguage}
-                className="flex items-center gap-1 cursor-pointer bg-white px-3 py-2 rounded-full border border-gray-200 shadow-sm active:scale-95 text-xs font-bold font-sans transition-all"
+                className="flex items-center gap-1 cursor-pointer bg-white px-2.5 py-1.5 md:px-3 md:py-2 rounded-full border border-gray-200 shadow-sm active:scale-95 text-[10px] md:text-xs font-bold font-sans transition-all"
               >
                 <span className={language === 'en' ? 'text-blue-600 font-black' : 'text-gray-400'}>EN</span>
                 <span className="text-gray-200">|</span>
                 <span className={language === 'id' ? 'text-blue-600 font-black' : 'text-gray-400'}>ID</span>
               </button>
-              <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white shadow-sm active:scale-95 transition-transform">
-                <span className="material-symbols-outlined text-gray-700">menu</span>
+              <button 
+                onClick={() => setIsMenuOpen(true)}
+                className="w-9 h-9 md:w-10 md:h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white shadow-sm active:scale-95 transition-transform"
+              >
+                <span className="material-symbols-outlined text-gray-700 text-[20px] md:text-[24px]">menu</span>
               </button>
             </div>
           </section>
 
+          {/* Full-screen Mobile Menu (Hamburger) */}
+          {isMenuOpen && (
+            <div className="fixed inset-0 bg-white z-[100] flex flex-col animate-fade-in">
+              <div className="flex justify-between items-center p-6 border-b border-gray-100">
+                <h2 className="text-xl font-bold text-gray-900">Menu Utama</h2>
+                <button 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 active:scale-95 transition-transform"
+                >
+                  <span className="material-symbols-outlined">close</span>
+                </button>
+              </div>
+              <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                <button 
+                  onClick={() => { setIsMenuOpen(false); navigate('/'); }} 
+                  className="w-full flex items-center gap-4 p-4 rounded-2xl bg-gray-50 text-gray-800 font-bold active:scale-95 transition-transform"
+                >
+                  <span className="material-symbols-outlined text-blue-500">home</span>
+                  Beranda
+                </button>
+                <button 
+                  onClick={() => { setIsMenuOpen(false); navigate('/destinasi'); }} 
+                  className="w-full flex items-center gap-4 p-4 rounded-2xl bg-gray-50 text-gray-800 font-bold active:scale-95 transition-transform"
+                >
+                  <span className="material-symbols-outlined text-green-500">map</span>
+                  Katalog Destinasi
+                </button>
+                <button 
+                  onClick={() => { setIsMenuOpen(false); navigate('/penginapan'); }} 
+                  className="w-full flex items-center gap-4 p-4 rounded-2xl bg-gray-50 text-gray-800 font-bold active:scale-95 transition-transform"
+                >
+                  <span className="material-symbols-outlined text-purple-500">bed</span>
+                  Cari Penginapan / Hotel
+                </button>
+                <button 
+                  onClick={() => { setIsMenuOpen(false); navigate('/umkm'); }} 
+                  className="w-full flex items-center gap-4 p-4 rounded-2xl bg-gray-50 text-gray-800 font-bold active:scale-95 transition-transform"
+                >
+                  <span className="material-symbols-outlined text-orange-500">storefront</span>
+                  Marketplace UMKM
+                </button>
+                <button 
+                  onClick={() => { setIsMenuOpen(false); navigate('/trip-planner'); }} 
+                  className="w-full flex items-center gap-4 p-4 rounded-2xl bg-gray-50 text-gray-800 font-bold active:scale-95 transition-transform"
+                >
+                  <span className="material-symbols-outlined text-teal-500">calculate</span>
+                  Trip Planner & Budget
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Search Bar */}
-          <section className="px-6 mb-6 lg:max-w-2xl relative z-10">
+          <section className="px-4 md:px-6 mb-4 md:mb-6 lg:max-w-2xl relative z-10">
             <div className="relative">
               <input
                 type="text"
                 placeholder={t('home.search')}
-                className="w-full h-14 pl-14 pr-12 rounded-full border-none shadow-sm text-gray-700 font-medium focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full h-12 md:h-14 pl-12 md:pl-14 pr-10 md:pr-12 rounded-full border-none shadow-sm text-sm md:text-base text-gray-700 font-medium focus:ring-2 focus:ring-blue-500 outline-none"
                 onClick={() => navigate('/destinasi')}
                 readOnly
               />
-              <span className="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-gray-400">search</span>
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center">
-                <span className="material-symbols-outlined text-blue-500">tune</span>
+              <span className="material-symbols-outlined absolute left-4 md:left-5 top-1/2 -translate-y-1/2 text-gray-400 text-[20px] md:text-[24px]">search</span>
+              <div className="absolute right-1.5 md:right-2 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center">
+                <span className="material-symbols-outlined text-blue-500 text-[20px] md:text-[24px]">tune</span>
               </div>
             </div>
           </section>
 
           {/* Hero Carousel */}
-          <section className="px-4 md:px-6 mb-8 lg:max-w-full">
-            <div className="relative h-[300px] md:h-[400px] rounded-[32px] overflow-hidden shadow-lg group">
+          <section className="px-4 md:px-6 mb-6 md:mb-8 lg:max-w-full">
+            <div className="relative h-[260px] md:h-[400px] rounded-[24px] md:rounded-[32px] overflow-hidden shadow-lg group">
+              
+              {/* Text overlay at the top (Welcome Screen) */}
+              <div className="absolute top-0 left-0 right-0 p-5 md:p-8 z-20 pointer-events-none bg-gradient-to-b from-black/70 via-black/30 to-transparent">
+                <h1 className="text-xl md:text-3xl font-bold text-white mb-0.5 md:mb-1 drop-shadow-lg">{t('home.welcome')}</h1>
+                <p className="text-[13px] md:text-base text-white/90 font-medium drop-shadow-md">{t('home.explore')}</p>
+              </div>
+
               <div className="h-full w-full relative">
                 {heroSlides.map((slide, index) => (
                   <div 
@@ -176,17 +242,17 @@ export default function Homepage() {
                       src={slide.image}
                       alt={t(`home.heroSlides.${index}.title`)}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 md:p-8">
-                      <h2 className="text-white font-bold text-2xl md:text-3xl mb-2 drop-shadow-md">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-5 md:p-8">
+                      <h2 className="text-white font-bold text-xl md:text-3xl mb-1 md:mb-2 drop-shadow-md">
                         {t(`home.heroSlides.${index}.title`)}
                       </h2>
-                      <p className="text-white/90 text-sm md:text-base mb-4 max-w-lg drop-shadow">
+                      <p className="text-white/90 text-[13px] md:text-base mb-3 md:mb-4 max-w-lg drop-shadow line-clamp-2">
                         {t(`home.heroSlides.${index}.desc`)}
                       </p>
                       <div className="flex gap-3">
                         <button
                           onClick={() => navigate(slide.link)}
-                          className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-bold text-sm w-fit hover:bg-blue-700 transition-colors shadow-lg active:scale-95"
+                          className="bg-blue-600 text-white px-5 py-2 md:px-6 md:py-2.5 rounded-xl font-bold text-[13px] md:text-sm w-fit hover:bg-blue-700 transition-colors shadow-lg active:scale-95 pointer-events-auto"
                         >
                           {t('home.exploreNow')}
                         </button>
@@ -195,13 +261,13 @@ export default function Homepage() {
                   </div>
                 ))}
               </div>
-              <div className="absolute bottom-6 right-6 flex gap-2 z-20">
+              <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 flex gap-1.5 md:gap-2 z-20">
                 {heroSlides.map((_, index) => (
                   <div 
                     key={index}
                     onClick={() => setCurrentSlide(index)}
                     className={`h-1.5 rounded-full cursor-pointer transition-all duration-300 ${
-                      index === currentSlide ? 'w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/60'
+                      index === currentSlide ? 'w-5 md:w-6 bg-white' : 'w-1.5 bg-white/40 hover:bg-white/60'
                     }`}
                   ></div>
                 ))}
@@ -210,19 +276,19 @@ export default function Homepage() {
           </section>
 
           {/* Category Filter Pills */}
-          <section className="pl-6 mb-8">
-            <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-2 pr-6">
+          <section className="pl-4 md:pl-6 mb-6 md:mb-8">
+            <div className="flex gap-3 md:gap-4 overflow-x-auto hide-scrollbar pb-2 pr-4 md:pr-6">
               {categories.slice(1).map(cat => (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCat(cat.id)}
-                  className={`flex-shrink-0 flex items-center gap-2 px-5 py-3 rounded-full font-semibold transition-all shadow-sm ${
+                  className={`flex-shrink-0 flex items-center gap-1.5 md:gap-2 px-4 py-2 md:px-5 md:py-3 rounded-full text-[13px] md:text-base font-semibold transition-all shadow-sm ${
                     activeCat === cat.id 
                       ? 'bg-blue-600 text-white' 
                       : 'bg-white text-gray-500 border border-gray-100 hover:border-gray-300'
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span className="material-symbols-outlined text-[18px] md:text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
                     {cat.icon}
                   </span>
                   {getCategoryLabel(cat.id)}
@@ -232,18 +298,18 @@ export default function Homepage() {
           </section>
 
           {/* Popular Places */}
-          <section className="px-6 mb-16">
-            <div className="flex justify-between items-center mb-5">
-              <h2 className="text-xl font-bold text-gray-900">{t('home.popularDestinations')}</h2>
-              <button onClick={() => navigate('/destinasi')} className="text-blue-500 font-semibold text-sm hover:underline">{t('home.seeAll')}</button>
+          <section className="px-4 md:px-6 mb-10 md:mb-16">
+            <div className="flex justify-between items-center mb-4 md:mb-5">
+              <h2 className="text-lg md:text-xl font-bold text-gray-900">{t('home.popularDestinations')}</h2>
+              <button onClick={() => navigate('/destinasi')} className="text-blue-500 font-semibold text-[13px] md:text-sm hover:underline">{t('home.seeAll')}</button>
             </div>
             
-            <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-6 -mx-6 px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory scroll-pl-6">
+            <div className="flex gap-3 md:gap-4 overflow-x-auto hide-scrollbar pb-4 md:pb-6 -mx-4 px-4 md:-mx-6 md:px-6 lg:mx-0 lg:px-0 snap-x snap-mandatory scroll-pl-4 md:scroll-pl-6">
               {popularPlaces.map((place, index) => (
                 <div 
                   key={place.id}
                   onClick={() => navigate(`/destinasi/${place.id}`)}
-                  className="snap-start flex-shrink-0 w-[80vw] max-w-[260px] md:w-[280px] h-[260px] relative rounded-[32px] overflow-hidden shadow-lg cursor-pointer group"
+                  className="snap-start flex-shrink-0 w-[220px] md:w-[280px] h-[160px] md:h-[260px] relative rounded-[20px] md:rounded-[32px] overflow-hidden shadow-lg cursor-pointer group"
                 >
                   <img 
                     src={place.image} 
@@ -254,24 +320,24 @@ export default function Homepage() {
                   {/* Heart Button */}
                   <button 
                     onClick={(e) => { e.stopPropagation(); alert(t('detail.saved')); }}
-                    className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-sm"
+                    className="absolute top-3 md:top-5 right-3 md:right-5 w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-sm"
                   >
-                    <span className="material-symbols-outlined text-white text-[20px]">favorite_border</span>
+                    <span className="material-symbols-outlined text-white text-[16px] md:text-[20px]">favorite_border</span>
                   </button>
 
                   {/* Info Card at Bottom */}
-                  <div className="absolute bottom-5 left-5 right-5 bg-[#3e4453]/80 backdrop-blur-xl rounded-[24px] p-4 border border-white/10 shadow-xl overflow-hidden">
+                  <div className="absolute bottom-2 left-2 right-2 md:bottom-5 md:left-5 md:right-5 bg-[#3e4453]/80 backdrop-blur-xl rounded-[16px] md:rounded-[24px] p-2.5 md:p-4 border border-white/10 shadow-xl overflow-hidden">
                     <div className="relative z-10 flex justify-between items-end gap-2">
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-white font-bold text-[17px] truncate mb-1">{t(`home.popularPlaces.${index}.title`)}</h3>
+                        <h3 className="text-white font-bold text-[13px] md:text-[17px] truncate mb-0.5 md:mb-1">{t(`home.popularPlaces.${index}.title`)}</h3>
                         <div className="flex items-center gap-1 text-gray-300">
-                          <span className="material-symbols-outlined text-[14px]">location_on</span>
-                          <span className="text-xs truncate">{t(`home.popularPlaces.${index}.location`)}</span>
+                          <span className="material-symbols-outlined text-[12px] md:text-[14px]">location_on</span>
+                          <span className="text-[10px] md:text-xs truncate">{t(`home.popularPlaces.${index}.location`)}</span>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1 bg-white/20 px-2 py-1 rounded-lg backdrop-blur-md">
-                        <span className="text-yellow-400 font-bold text-sm">{place.rating}</span>
-                        <span className="material-symbols-outlined text-yellow-400 text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                      <div className="flex items-center gap-0.5 md:gap-1 bg-white/20 px-1.5 py-0.5 md:px-2 md:py-1 rounded-lg backdrop-blur-md">
+                        <span className="text-yellow-400 font-bold text-[11px] md:text-sm">{place.rating}</span>
+                        <span className="material-symbols-outlined text-yellow-400 text-[12px] md:text-[14px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
                       </div>
                     </div>
                   </div>
@@ -282,78 +348,78 @@ export default function Homepage() {
         </div>
 
         {/* REST OF THE CONTENT - Made to look busy/ramai */}
-        <div className="px-6 lg:px-8 space-y-16">
+        <div className="px-4 md:px-6 lg:px-8 space-y-10 md:space-y-16">
           
           {/* Stats Row */}
-          <section className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="bg-white p-4 rounded-2xl shadow-sm flex items-center gap-3 border border-gray-100">
-              <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center">
-                <span className="material-symbols-outlined">account_balance</span>
+          <section className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            <div className="bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm flex items-center gap-2.5 md:gap-3 border border-gray-100">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="material-symbols-outlined text-[18px] md:text-[24px]">account_balance</span>
               </div>
               <div>
-                <p className="text-gray-400 text-xs font-semibold">{t('home.statsDestinations')}</p>
-                <p className="text-gray-900 font-bold text-lg">45+</p>
+                <p className="text-gray-400 text-[10px] md:text-xs font-semibold leading-tight">{t('home.statsDestinations')}</p>
+                <p className="text-gray-900 font-bold text-sm md:text-lg leading-tight mt-0.5">45+</p>
               </div>
             </div>
-            <div className="bg-white p-4 rounded-2xl shadow-sm flex items-center gap-3 border border-gray-100">
-              <div className="w-10 h-10 bg-orange-50 text-orange-500 rounded-lg flex items-center justify-center">
-                <span className="material-symbols-outlined">shopping_bag</span>
+            <div className="bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm flex items-center gap-2.5 md:gap-3 border border-gray-100">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-orange-50 text-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="material-symbols-outlined text-[18px] md:text-[24px]">shopping_bag</span>
               </div>
               <div>
-                <p className="text-gray-400 text-xs font-semibold">{t('home.statsMsmes')}</p>
-                <p className="text-gray-900 font-bold text-lg">120+</p>
+                <p className="text-gray-400 text-[10px] md:text-xs font-semibold leading-tight">{t('home.statsMsmes')}</p>
+                <p className="text-gray-900 font-bold text-sm md:text-lg leading-tight mt-0.5">120+</p>
               </div>
             </div>
-            <div className="bg-white p-4 rounded-2xl shadow-sm flex items-center gap-3 border border-gray-100">
-              <div className="w-10 h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center">
-                <span className="material-symbols-outlined">calendar_month</span>
+            <div className="bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm flex items-center gap-2.5 md:gap-3 border border-gray-100">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-green-50 text-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="material-symbols-outlined text-[18px] md:text-[24px]">calendar_month</span>
               </div>
               <div>
-                <p className="text-gray-400 text-xs font-semibold">{t('home.statsEvents')}</p>
-                <p className="text-gray-900 font-bold text-lg">12</p>
+                <p className="text-gray-400 text-[10px] md:text-xs font-semibold leading-tight">{t('home.statsEvents')}</p>
+                <p className="text-gray-900 font-bold text-sm md:text-lg leading-tight mt-0.5">12</p>
               </div>
             </div>
-            <div className="bg-white p-4 rounded-2xl shadow-sm flex items-center gap-3 border border-gray-100">
-              <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center">
-                <span className="material-symbols-outlined">groups</span>
+            <div className="bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-sm flex items-center gap-2.5 md:gap-3 border border-gray-100">
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-purple-50 text-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                <span className="material-symbols-outlined text-[18px] md:text-[24px]">groups</span>
               </div>
               <div>
-                <p className="text-gray-400 text-xs font-semibold">{t('home.statsTourists')}</p>
-                <p className="text-gray-900 font-bold text-lg">15K+</p>
+                <p className="text-gray-400 text-[10px] md:text-xs font-semibold leading-tight">{t('home.statsTourists')}</p>
+                <p className="text-gray-900 font-bold text-sm md:text-lg leading-tight mt-0.5">15K+</p>
               </div>
             </div>
           </section>
 
           {/* Asymmetric: Event & UMKM */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
             {/* Event Mendatang */}
-            <section className="lg:col-span-5 space-y-4">
+            <section className="lg:col-span-5 space-y-3 md:space-y-4">
               <div className="flex justify-between items-end">
-                <h3 className="text-xl font-bold text-gray-900">{t('home.upcomingEvents')}</h3>
-                <button onClick={() => navigate('/event')} className="text-blue-500 font-semibold text-sm hover:underline">{t('home.calendar')}</button>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">{t('home.upcomingEvents')}</h3>
+                <button onClick={() => navigate('/event')} className="text-blue-500 font-semibold text-[13px] md:text-sm hover:underline">{t('home.calendar')}</button>
               </div>
               <div className="space-y-3">
-                <div className="flex gap-4 bg-white p-3 rounded-2xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors cursor-pointer group">
-                  <div className="flex-shrink-0 w-16 h-16 bg-blue-600 text-white rounded-[14px] flex flex-col items-center justify-center shadow-sm shadow-blue-200">
-                    <span className="text-lg font-black leading-none">24</span>
-                    <span className="text-[10px] font-bold uppercase mt-1">Okt</span>
+                <div className="flex gap-3 md:gap-4 bg-white p-2.5 md:p-3 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors cursor-pointer group">
+                  <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 bg-blue-600 text-white rounded-[12px] md:rounded-[14px] flex flex-col items-center justify-center shadow-sm shadow-blue-200">
+                    <span className="text-base md:text-lg font-black leading-none">24</span>
+                    <span className="text-[9px] md:text-[10px] font-bold uppercase mt-1">Okt</span>
                   </div>
                   <div className="flex flex-col justify-center">
-                    <h5 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors text-[15px]">{t('home.upcomingEventsList.0.title')}</h5>
-                    <p className="text-gray-500 text-xs flex items-center gap-1 mt-1">
-                      <span className="material-symbols-outlined text-[14px]">location_on</span> {t('home.upcomingEventsList.0.location')}
+                    <h5 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors text-[14px] md:text-[15px]">{t('home.upcomingEventsList.0.title')}</h5>
+                    <p className="text-gray-500 text-[11px] md:text-xs flex items-center gap-1 mt-0.5 md:mt-1">
+                      <span className="material-symbols-outlined text-[13px] md:text-[14px]">location_on</span> {t('home.upcomingEventsList.0.location')}
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4 bg-white p-3 rounded-2xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors cursor-pointer group">
-                  <div className="flex-shrink-0 w-16 h-16 bg-orange-100 text-orange-600 rounded-[14px] flex flex-col items-center justify-center">
-                    <span className="text-lg font-black leading-none">12</span>
-                    <span className="text-[10px] font-bold uppercase mt-1">Nov</span>
+                <div className="flex gap-3 md:gap-4 bg-white p-2.5 md:p-3 rounded-xl md:rounded-2xl shadow-sm border border-gray-100 hover:border-blue-200 transition-colors cursor-pointer group">
+                  <div className="flex-shrink-0 w-14 h-14 md:w-16 md:h-16 bg-orange-100 text-orange-600 rounded-[12px] md:rounded-[14px] flex flex-col items-center justify-center">
+                    <span className="text-base md:text-lg font-black leading-none">12</span>
+                    <span className="text-[9px] md:text-[10px] font-bold uppercase mt-1">Nov</span>
                   </div>
                   <div className="flex flex-col justify-center">
-                    <h5 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors text-[15px]">{t('home.upcomingEventsList.1.title')}</h5>
-                    <p className="text-gray-500 text-xs flex items-center gap-1 mt-1">
-                      <span className="material-symbols-outlined text-[14px]">location_on</span> {t('home.upcomingEventsList.1.location')}
+                    <h5 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors text-[14px] md:text-[15px]">{t('home.upcomingEventsList.1.title')}</h5>
+                    <p className="text-gray-500 text-[11px] md:text-xs flex items-center gap-1 mt-0.5 md:mt-1">
+                      <span className="material-symbols-outlined text-[13px] md:text-[14px]">location_on</span> {t('home.upcomingEventsList.1.location')}
                     </p>
                   </div>
                 </div>
@@ -361,30 +427,30 @@ export default function Homepage() {
             </section>
 
             {/* UMKM Pilihan */}
-            <section className="lg:col-span-7 space-y-4">
+            <section className="lg:col-span-7 space-y-3 md:space-y-4">
               <div className="flex justify-between items-end">
-                <h3 className="text-xl font-bold text-gray-900">{t('home.featuredMsmes')}</h3>
-                <button onClick={() => navigate('/umkm')} className="text-blue-500 font-semibold text-sm hover:underline">{t('home.allProducts')}</button>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900">{t('home.featuredMsmes')}</h3>
+                <button onClick={() => navigate('/umkm')} className="text-blue-500 font-semibold text-[13px] md:text-sm hover:underline">{t('home.allProducts')}</button>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div onClick={() => navigate('/umkm/1')} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer">
-                  <div className="h-32 overflow-hidden relative p-2 pb-0">
-                    <img className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbV2r6wgfSH9hh30F5-XVRTAvHAR5bZOIIDrAkXYuXTfWHwMols7cz0fCc3HVdhA7DuJ_fXR3jws-FjyivHw7pNyj_OUFBOFcBC_V19EFnvFzCG345BwkwavceFsSoqDTZA4y-BRg0NRRBncxdZka5V3-WSj1HsCIbc1Hd7x0-XYG8t3FYtykXcbQ7inkUy1wW-svrbD3fxRXASX7FcMjiMUhv5ZCPmi4dqmJnomxs7wHvAv70TQ5rb14hyAeZpZJViDAvYa4kDUk" alt="Tenun Buton" />
-                    <div className="absolute top-4 right-4 bg-orange-500 text-white text-[9px] font-black tracking-wider px-2 py-1 rounded-md">{language === 'en' ? 'WEAVE' : 'TENUN'}</div>
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
+                <div onClick={() => navigate('/umkm/1')} className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer">
+                  <div className="h-24 md:h-32 overflow-hidden relative p-1.5 md:p-2 pb-0">
+                    <img className="w-full h-full object-cover rounded-lg md:rounded-xl group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbV2r6wgfSH9hh30F5-XVRTAvHAR5bZOIIDrAkXYuXTfWHwMols7cz0fCc3HVdhA7DuJ_fXR3jws-FjyivHw7pNyj_OUFBOFcBC_V19EFnvFzCG345BwkwavceFsSoqDTZA4y-BRg0NRRBncxdZka5V3-WSj1HsCIbc1Hd7x0-XYG8t3FYtykXcbQ7inkUy1wW-svrbD3fxRXASX7FcMjiMUhv5ZCPmi4dqmJnomxs7wHvAv70TQ5rb14hyAeZpZJViDAvYa4kDUk" alt="Tenun Buton" />
+                    <div className="absolute top-3 md:top-4 right-3 md:right-4 bg-orange-500 text-white text-[8px] md:text-[9px] font-black tracking-wider px-1.5 md:px-2 py-0.5 md:py-1 rounded-md">{language === 'en' ? 'WEAVE' : 'TENUN'}</div>
                   </div>
-                  <div className="p-3">
-                    <h5 className="font-bold text-gray-900 text-sm truncate">{t('home.featuredProducts.0.title')}</h5>
-                    <p className="text-blue-600 font-black text-[15px] mt-0.5">Rp 450.000</p>
+                  <div className="p-2.5 md:p-3">
+                    <h5 className="font-bold text-gray-900 text-[13px] md:text-sm truncate">{t('home.featuredProducts.0.title')}</h5>
+                    <p className="text-blue-600 font-black text-[13px] md:text-[15px] mt-0.5">Rp 450.000</p>
                   </div>
                 </div>
-                <div onClick={() => navigate('/umkm/2')} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer">
-                  <div className="h-32 overflow-hidden relative p-2 pb-0">
-                    <img className="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtg6IX0ZV1nDBYmM77zOaFPbON3RfhrPqzlIhUpSw4eFStOkI0tAxTMUZIr2AK01bjzhWJ9U6N9Km0IwjiS2RSHpUQ5HxzIvStWIBuKqj91B-W6Zoi3ARaXukLr8pF2h9umtns5h4QH8P9XOd5NoBuN1p4qNNNgc8vdNmc_cWlXMSn5vBi9dvf4nYgt3K8HTjkul5MVIZrUxiiglLhq2cq8eu_h6Lw_UKa6lQ_5N5G0mEIa47GpsLfgrRmcUYlNumSqj9HlS1ZZxc" alt="Kasuami" />
-                    <div className="absolute top-4 right-4 bg-orange-500 text-white text-[9px] font-black tracking-wider px-2 py-1 rounded-md">{language === 'en' ? 'CULINARY' : 'KULINER'}</div>
+                <div onClick={() => navigate('/umkm/2')} className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-sm border border-gray-100 group cursor-pointer">
+                  <div className="h-24 md:h-32 overflow-hidden relative p-1.5 md:p-2 pb-0">
+                    <img className="w-full h-full object-cover rounded-lg md:rounded-xl group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtg6IX0ZV1nDBYmM77zOaFPbON3RfhrPqzlIhUpSw4eFStOkI0tAxTMUZIr2AK01bjzhWJ9U6N9Km0IwjiS2RSHpUQ5HxzIvStWIBuKqj91B-W6Zoi3ARaXukLr8pF2h9umtns5h4QH8P9XOd5NoBuN1p4qNNNgc8vdNmc_cWlXMSn5vBi9dvf4nYgt3K8HTjkul5MVIZrUxiiglLhq2cq8eu_h6Lw_UKa6lQ_5N5G0mEIa47GpsLfgrRmcUYlNumSqj9HlS1ZZxc" alt="Kasuami" />
+                    <div className="absolute top-3 md:top-4 right-3 md:right-4 bg-orange-500 text-white text-[8px] md:text-[9px] font-black tracking-wider px-1.5 md:px-2 py-0.5 md:py-1 rounded-md">{language === 'en' ? 'CULINARY' : 'KULINER'}</div>
                   </div>
-                  <div className="p-3">
-                    <h5 className="font-bold text-gray-900 text-sm truncate">{t('home.featuredProducts.1.title')}</h5>
-                    <p className="text-blue-600 font-black text-[15px] mt-0.5">Rp 25.000</p>
+                  <div className="p-2.5 md:p-3">
+                    <h5 className="font-bold text-gray-900 text-[13px] md:text-sm truncate">{t('home.featuredProducts.1.title')}</h5>
+                    <p className="text-blue-600 font-black text-[13px] md:text-[15px] mt-0.5">Rp 25.000</p>
                   </div>
                 </div>
               </div>
