@@ -125,8 +125,8 @@ export default function Homepage() {
           <section className="px-4 md:px-6 pt-6 md:pt-8 pb-2 md:pb-4 flex justify-between items-center">
             {/* Logo */}
             <div className="flex items-center gap-1.5 md:gap-2 cursor-pointer" onClick={() => navigate('/')}>
-              <img src="/favicon.svg" alt="Pesona Baubau" className="w-6 h-6 md:w-8 md:h-8" />
-              <span className="font-black text-blue-900 text-[14px] md:text-[17px] tracking-tight whitespace-nowrap">Pesona Baubau</span>
+              <img src="/logo.png" alt="Pesona Baubau" className="w-8 h-8 md:w-10 md:h-10 rounded-full shadow-sm" />
+              <span className="font-black text-blue-900 text-[14px] md:text-[17px] tracking-tight whitespace-nowrap hidden sm:block">Pesona Baubau</span>
             </div>
             
             {/* Actions */}

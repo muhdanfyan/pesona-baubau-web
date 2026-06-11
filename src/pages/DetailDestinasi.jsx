@@ -206,11 +206,11 @@ export default function DetailDestinasi() {
       </div>
 
       {/* Fixed Bottom Action Bar */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-white via-white to-transparent z-50">
-        <div className="max-w-md mx-auto flex gap-4">
-          <button className="flex-1 py-4 px-6 rounded-2xl border-[1.5px] border-blue-100 bg-blue-50/50 flex justify-center items-center gap-2 hover:bg-blue-50 transition-colors">
-            <span className="material-symbols-outlined text-blue-500 text-[20px]">bookmark_border</span>
-            <span className="text-blue-500 font-bold text-[15px]">{t('detail.save')}</span>
+      <div className="fixed bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-white via-white to-transparent z-50">
+        <div className="max-w-md mx-auto flex gap-2 md:gap-4">
+          <button className="w-14 h-14 md:w-auto md:flex-1 shrink-0 rounded-2xl border-[1.5px] border-blue-100 bg-blue-50/50 flex justify-center items-center gap-2 hover:bg-blue-50 transition-colors">
+            <span className="material-symbols-outlined text-blue-500 text-[24px]">bookmark_border</span>
+            <span className="hidden md:inline text-blue-500 font-bold text-[15px]">{t('detail.save')}</span>
           </button>
           <button 
             onClick={() => {
@@ -220,17 +220,17 @@ export default function DetailDestinasi() {
                 navigate('/peta');
               }
             }}
-            className="flex-1 py-4 px-6 rounded-2xl bg-blue-600 text-white flex justify-center items-center gap-2 shadow-xl shadow-blue-600/30 hover:bg-blue-700 transition-colors active:scale-95"
+            className="w-14 h-14 md:w-auto md:flex-1 shrink-0 rounded-2xl bg-blue-600 text-white flex justify-center items-center gap-2 shadow-xl shadow-blue-600/30 hover:bg-blue-700 transition-colors active:scale-95"
           >
-            <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>near_me</span>
-            <span className="font-bold text-[15px]">{t('detail.directions')}</span>
+            <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>near_me</span>
+            <span className="hidden md:inline font-bold text-[15px]">{t('detail.directions')}</span>
           </button>
           <button
             onClick={() => navigate('/trip-planner')}
-            className="flex-1 py-4 px-6 rounded-2xl bg-emerald-600 text-white flex justify-center items-center gap-2 shadow-xl shadow-emerald-600/30 hover:bg-emerald-700 transition-colors active:scale-95"
+            className="flex-1 h-14 rounded-2xl bg-emerald-600 text-white flex justify-center items-center gap-1.5 md:gap-2 shadow-xl shadow-emerald-600/30 hover:bg-emerald-700 transition-colors active:scale-95 px-2 md:px-6"
           >
             <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>account_balance_wallet</span>
-            <span className="font-bold text-[15px]">Tambah ke Rencana Budget</span>
+            <span className="font-bold text-[13px] md:text-[15px] whitespace-nowrap overflow-hidden text-ellipsis">Tambah Rencana</span>
           </button>
         </div>
       </div>
