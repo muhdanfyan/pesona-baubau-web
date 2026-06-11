@@ -97,7 +97,7 @@ export default function DetailDestinasi() {
       </div>
 
       {/* Floating Header Actions */}
-      <div className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 pt-12 pb-4">
+      <div className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-4 md:px-6 pt-4 md:pt-8 pb-4">
         <button 
           onClick={() => navigate(-1)}
           className="w-11 h-11 rounded-full bg-[#1e2330]/50 backdrop-blur-md flex items-center justify-center border border-white/20 active:scale-95 transition-transform"

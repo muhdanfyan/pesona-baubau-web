@@ -77,37 +77,38 @@ export default function TripPlanner() {
     <div className="min-h-screen pb-24 bg-[#F5F3F0]">
       <Header
         title="Trip Planner"
+        showBack
         rightAction={
-          <div className="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden ring-2 ring-primary/10">
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-fixed overflow-hidden ring-2 ring-primary/10 shadow-sm">
             <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7ZMPA0rlDuhGFIjXe7TNQH23IkONZi6zinU3nYLecBBH5yf-yyJvSNndoWK7eifDR5OhXFPust750hAq9phkCqEDw-pSl6aPbDlqTqvUcl73xXtAyaIJS4vkqBfplaMUk8-FKaKVIqIiGGA1SrZXcd5fU4DoTyIPGO5bSSUNl_KH9BSDLRcwxkapB5OCNQq_ljFL2Vv7bBru9d89FFkzggpVZ40fEkR4jPlaTZGx3_-sERJ1nUUBJUBIOeCUv4mry0_R8peld9ro" alt="Profile" />
           </div>
         }
       />
-      <main className="max-w-4xl mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-[#1A5276] mb-2">Estimasi Budget Liburan</h2>
-          <p className="text-gray-600">Rencanakan kunjungan Anda dan hitung otomatis estimasi pengeluaran bersama layanan UMKM Baubau.</p>
+      <main className="max-w-4xl mx-auto px-4 py-4 md:py-8">
+        <div className="text-center mb-4 md:mb-8">
+          <h2 className="text-xl md:text-3xl font-bold text-[#1A5276] mb-1 md:mb-2">Estimasi Budget Liburan</h2>
+          <p className="text-xs md:text-base text-gray-600 px-2">Rencanakan kunjungan Anda dan hitung otomatis estimasi pengeluaran bersama layanan UMKM Baubau.</p>
         </div>
 
         {/* Progress Bar */}
-        <div className="relative mb-12 px-4">
+        <div className="relative mb-8 md:mb-12 px-2 md:px-4">
           <div className="flex justify-between relative z-10">
             {['Destinasi', 'Fasilitas UMKM', 'Estimasi'].map((label, index) => (
-              <div key={index} className="flex flex-col items-center gap-2">
+              <div key={index} className="flex flex-col items-center gap-1 md:gap-2">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-colors duration-300 ${
+                  className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-sm md:text-base font-bold transition-colors duration-300 shadow-sm ${
                     index + 1 <= currentStep
                       ? 'bg-[#1A5276] text-white'
-                      : 'bg-gray-200 text-gray-500'
+                      : 'bg-white border-2 border-gray-200 text-gray-500'
                   }`}
                 >
                   {index + 1}
                 </div>
-                <span className="text-xs font-medium text-gray-600 hidden md:block">{label}</span>
+                <span className={`text-[10px] md:text-xs font-semibold ${index + 1 <= currentStep ? 'text-[#1A5276]' : 'text-gray-500'}`}>{label}</span>
               </div>
             ))}
           </div>
-          <div className="absolute top-5 left-8 right-8 h-1 bg-gray-200 -z-0">
+          <div className="absolute top-4 md:top-5 left-6 right-6 md:left-8 md:right-8 h-1 bg-gray-200 -z-0 rounded-full overflow-hidden">
             <div
               className="h-full bg-[#1A5276] transition-all duration-500"
               style={{ width: `${progressWidth}%` }}
